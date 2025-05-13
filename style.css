@@ -10,7 +10,7 @@ header {
     background-color: rgb(30, 30, 30);
 
 }
-header img{
+#logo{
     display: block;
     height: 60px;
 }
