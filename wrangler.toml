@@ -1,0 +1,5 @@
+name = "moja-strona"
+compatibility_date = "2025-05-13"
+
+[site]
+bucket = "./"
