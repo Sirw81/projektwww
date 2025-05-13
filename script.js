@@ -1,4 +1,4 @@
 document.getElementById("test1").addEventListener("click", function () {
-    window.location.href = "hlogin.html";
+    window.location.href = "login.html";
   });
   
