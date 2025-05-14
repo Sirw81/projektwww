@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login / Y</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="login.css">
     <link rel="icon" href="img/favicon.png" type="image/png">
 </head>
+
 <body>
     <div class="logbox">
-        <form action="/login" method="POST">
+        <img src="img/logo.png" alt="Logo" class="logo">
+        <h2>LOGOWANIE</h2>
+        <form id="loginForm">
             <input type="text" id="username" name="username" placeholder="Nazwa użytkownika" required>
             <input type="password" id="password" name="password" placeholder="Hasło" required>
             <button type="submit">Zaloguj się</button>
         </form>
+
+        <p class="regtext">
+            Nie masz konta? <a href="register.html" class="link-button">Zarejestruj się</a>
+        </p>
     </div>
+
+    <footer class="footer">
+        © 2025 Twoja Firma. Wszelkie prawa zastrzeżone.
+    </footer>
+
+    <script src="script.js"></script>
 </body>
+
 </html>

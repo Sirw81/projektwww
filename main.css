@@ -1,16 +1,4 @@
-body {
-    background-color: rgb(30, 30, 30);
-    display: flex;
-    flex-direction: column;
-}
-
-header {
-    height: 100px;
-    width: 100%;
-    background-color: rgb(30, 30, 30);
-
-}
-#logo{
+header img{
     display: block;
     height: 60px;
 }
