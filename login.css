@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(30, 30, 30);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.logo {
+    height: 60px;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+
+.logbox {
+    background-color: rgb(40, 40, 40);
+    width: 400px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.logbox h2 {
+    color: #fff;
+    margin-bottom: 30px;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form input {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(60, 60, 60);
+    color: #eee;
+    font-size: 16px;
+    text-align: left;
+}
+
+form input::placeholder {
+    color: #aaa;
+    text-align: left;
+}
+
+form button {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    background-color: rgb(80, 80, 80);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: rgb(100, 100, 100);
+}
+
+.regtext {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #bbb;
+}
+
+.link-button {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.link-button:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer {
+    text-align: center;
+    font-size: 12px;
+    color: rgb(120, 120, 120);
+    margin-top: 40px;
+    padding: 10px 0;
+}
