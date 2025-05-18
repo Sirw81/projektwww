@@ -17,25 +17,32 @@
         <nav class="menu">
             <img src="img/placeholder.png" alt="avatar" id="avatar">
             <div class="menu-content">
-                    <button id="test1"> TEST1</button>
-                    <button id="test2">TEST2</button>
-                    <button id="logoutButton">WYLOGUJ</button>
+                <button id="test1"> TEST1</button>
+                <button id="test2">TEST2</button>
+                <button id="logoutButton">WYLOGUJ</button>
             </div>
         </nav>
     </header>
     <main>
         <div class="container">
             <section class="left">
-                    <div class="sidebar-buttons">
-        <button class="sidebar-btn">GŁÓWNA</button>
-        <button class="sidebar-btn">WYSZUKAJ</button>
-        <button class="sidebar-btn">PROFIL</button>
-        <button class="sidebar-btn">ZAPISANE</button>
+                <div class="sidebar-buttons">
+                    <button class="sidebar-btn">GŁÓWNA</button>
+                    <button class="sidebar-btn">WYSZUKAJ</button>
+                    <button class="sidebar-btn">PROFIL</button>
+                    <button class="sidebar-btn">ZAPISANE</button>
 
-    </div>
+                </div>
             </section>
             <section class="mid">
-                <p>test2</p>
+                <div class="post">
+                    <form id="postForm" class="post-form">
+                        <h3>Dodaj post</h3>
+                        <textarea name="content" placeholder="Dodaj post" required></textarea>
+                        <input type="file" name="image" accept="image/*">
+                        <button type="submit">Opublikuj</button>
+                    </form>
+                </div>
             </section>
             <section class="right">
                 <p>test3</p>
