@@ -195,17 +195,23 @@ header {
     font-size: 1.5rem;
     margin-bottom: 15px;
     color: white;
+    text-align: center;
 }
 
 #profileSection p {
     font-size: 1rem;
     margin-bottom: 10px;
     color: rgb(220, 220, 220);
+    text-align: center;
 }
 #profileAvatar {
+    display: block;
+    margin: auto;
     width: 200px;
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 15px;
+    border: 2px solid #000000;
+    background-color: rgb(100,100,100);
 }
