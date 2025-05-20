@@ -11,3 +11,20 @@ if (window.location.pathname.endsWith('index.html')) {
     });
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const profileBtn = document.getElementById('profile');
+    const homeSection = document.getElementById("homeSection");
+    const profileSection = document.getElementById("profileSection");
+
+    profileBtn.addEventListener("click", () => {
+        homeSection.style.display = "none";
+        profileSection.style.display = "block";
+    });
+
+    const homeBtn = document.getElementById('homepage');
+    homeBtn.addEventListener("click", () => {
+        profileSection.style.display = "none";
+        homeSection.style.display = "block";
+    });
+});

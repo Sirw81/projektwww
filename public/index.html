@@ -17,24 +17,23 @@
         <nav class="menu">
             <img src="img/placeholder.png" alt="avatar" id="avatar">
             <div class="menu-content">
-                <button id="test1"> TEST1</button>
-                <button id="test2">TEST2</button>
+                <button id="profile"> PROFIL</button>
                 <button id="logoutButton">WYLOGUJ</button>
             </div>
         </nav>
     </header>
     <main>
         <div class="container">
-            <section class="left">
+            <nav class="left">
                 <div class="sidebar-buttons">
-                    <button class="sidebar-btn">GŁÓWNA</button>
-                    <button class="sidebar-btn">WYSZUKAJ</button>
-                    <button class="sidebar-btn">PROFIL</button>
-                    <button class="sidebar-btn">ZAPISANE</button>
+                    <button class="sidebar-btn" id="homepage">GŁÓWNA</button>
+                    <button class="sidebar-btn" id="search">WYSZUKAJ</button>
+                    <button class="sidebar-btn" id="saved">ZAPISANE</button>
 
                 </div>
-            </section>
+            </nav>
             <section class="mid">
+                <div id="homeSection">
                 <div class="post">
                     <form id="postForm" class="post-form">
                         <h3>Dodaj post</h3>
@@ -43,11 +42,19 @@
                         <button type="submit">Opublikuj</button>
                     </form>
                 </div>
+                </div>
+                <div id="profileSection" style="display:none">
+                    <h2>Profil</h2>
+                    <img src="img/placeholder.png" alt="avatar" id="profileAvatar">
+                    <p>Nazwa:test</p>
+                    <p>email test</p>
+
+                </div>
             </section>
-            <section class="right">
+            <aside class="right">
                 <p>test3</p>
                 <p>test</p>
-            </section>
+            </aside>
         </div>
     </main>
     <footer>
