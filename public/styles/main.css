@@ -310,3 +310,14 @@ body.light-mode #profileAvatar {
   border: 2px solid #cccccc;
   background-color: #e0e0e0;
 }
+.ad{
+
+  margin: auto;
+  margin-top: 100px;
+  background-color: rgb(100,100,100);
+  width: 200px;
+  height: 160px;
+  border: #000000, solid, 3px;
+  border-radius: 5%;
+
+}
