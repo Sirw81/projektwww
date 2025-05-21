@@ -1,3 +1,4 @@
+/*elementy w header*/
 header {
     display: flex;
     justify-content: space-between;
@@ -17,82 +18,18 @@ header {
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+    border: #333333 solid 1px;
 }
-
-.container {
-    display: flex;
-    flex-direction: row;
-    height: calc(100vh - 60px);
-    width: 100%;
-}
-
-.left, .mid, .right {
-    height: 100%;
-    overflow-y: auto;
-}
-
-.left {
-    background-color: rgb(40, 40, 40);
-    width: 25%;
-}
-
-.mid {
-    background-color: rgb(50, 50, 50);
-    width: 50%;
-}
-
-.right {
-    background-color: rgb(40, 40, 40);
-    width: 25%;
-}
-
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .left,
-    .mid,
-    .right {
-        width: 100%;
-        height: auto;
-    }
-
-}
-.sidebar-buttons {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    gap: 10px;
-}
-
-.sidebar-btn {
-    background-color: rgb(40, 40, 40);
-    color: white;
-    border: none;
-    padding: 12px 16px;
-    text-align: right;
-    font-size: 1rem;
-    border-radius: 6px;
-    transition: background-color 0.2s;
-    cursor: pointer;
-}
-
-.sidebar-btn:hover {
-    background-color: rgb(60, 60, 60);
-}
-.menu {
+  .menu {
     position: relative;
     display: flex;
     align-items: center;
     padding: 0 20px;
     height: 60px;
     z-index: 10;
-}
-
-.menu-content {
+  }
+  
+  .menu-content {
     position: absolute;
     top: 60px;
     right: 0;
@@ -127,7 +64,60 @@ header {
 .menu-content button:hover {
     background-color: rgb(60, 60, 60);
 }
-.post-form {
+
+/*MAIN*/
+
+.container {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 60px);
+    width: 100%;
+}
+
+.left, .mid, .right {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.left {
+    background-color: rgb(40, 40, 40);
+    width: 25%;
+}
+  
+  .mid {
+    background-color: rgb(50, 50, 50);
+    width: 50%;
+  }
+  
+  .right {
+    background-color: rgb(40, 40, 40);
+    width: 25%;
+  }
+  /*PRZYCISKI PO LEWEJ*/
+  .sidebar-buttons {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      gap: 10px;
+  }
+  
+  .sidebar-btn {
+      background-color: rgb(40, 40, 40);
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      text-align: right;
+      font-size: 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+      cursor: pointer;
+  }
+  
+  .sidebar-btn:hover {
+      background-color: rgb(60, 60, 60);
+  }
+  /*MAIN - FORMULARZ POSTÓW*/
+  .post-form {
   width: 100%;
   padding: 20px;
   background-color: rgb(55, 55, 55);
@@ -185,6 +175,7 @@ header {
 .post-form button:hover {
   background-color: rgb(0, 100, 210);
 }
+/*MAIN - ZAKŁADKA PROFIL*/
 #profileSection {
     background-color: rgb(55, 55, 55);
     color: white;
@@ -215,9 +206,14 @@ header {
     border: 2px solid #000000;
     background-color: rgb(100,100,100);
 }
+/*MAIN - REKLAMY*/
 .ad{
 
-  margin-top: 150px;
+  margin-top: 200px;
+}
+.ad h3{
+  text-align: center;
+  color: rgb(220,220,220);
 }
 .ad img{
   margin: auto;
@@ -225,8 +221,34 @@ header {
   height: auto;
   border-radius: 5%;
   display: block;
-   border: #000000 solid 3px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
+  
+  /*MEDIA QUERY*/
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      height: auto;
+    }
+    
+    .left,
+    .mid,
+    .right {
+      width: 100%;
+      height: auto;
+    }
+      .sidebar-buttons {
+    align-items: center;
+  }
+
+  .sidebar-btn {
+    text-align: center;
+    width: 100%;
+  }
+  }
+
+
+
 
 /*LIGHT MODE*/
 body.light-mode header {
@@ -320,15 +342,4 @@ body.light-mode #profileSection p {
 body.light-mode #profileAvatar {
   border: 2px solid #cccccc;
   background-color: #e0e0e0;
-}
-body.light-mode .ad{
-
-  margin: auto;
-  margin-top: 100px;
-  background-color: rgb(200,200,200);
-  width: 200px;
-  height: 160px;
-  border: #a0a0a0, solid, 3px;
-  border-radius: 5%;
-
 }

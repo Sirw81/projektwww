@@ -181,3 +181,14 @@ body.light-mode #theme-toggle:hover {
   color: #f0f0f0;
 }
 
+@media (max-width: 768px) {
+  #theme-toggle {
+    position: relative;
+    margin: 40px auto 20px auto;
+    display: block;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+  }
+}

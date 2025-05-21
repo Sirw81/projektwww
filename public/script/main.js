@@ -1,8 +1,9 @@
+//jak niezalogowany przenosi na login
 if (window.location.pathname.endsWith('index.html')) {
   if (localStorage.getItem('isLoggedIn') !== 'true') {
     window.location.href = 'login.html';
   }
-
+//przycisk wyloguj
   const logoutBtn = document.getElementById('logoutButton');
   if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
@@ -12,6 +13,7 @@ if (window.location.pathname.endsWith('index.html')) {
   }
 }
 
+//zakladka profil i glwona
 document.addEventListener("DOMContentLoaded", () => {
     const profileBtn = document.getElementById('profile');
     const homeSection = document.getElementById("homeSection");
@@ -28,7 +30,23 @@ document.addEventListener("DOMContentLoaded", () => {
         homeSection.style.display = "block";
     });
 });
+//reklamy randomizer
+document.addEventListener("DOMContentLoaded", function () {
+  const images = [
+    "img/ad/01jowisz.png",
+    "img/ad/02oguh.png",
+    "img/ad/03dokop.png",
+    "img/ad/04traf.png",
+  ];
+  const random = Math.floor(Math.random() * images.length);
+  const selected = images[random];
+  const adImage = document.getElementById("ad");
+  if (adImage) {
+    adImage.src = selected;
+  }
+});
 
+//zmiana dark/light
 document.addEventListener("DOMContentLoaded", function () {
   const toggleBtn = document.getElementById("theme-toggle");
   const body = document.body;
@@ -63,6 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+
 document.getElementById('sharePost').onclick = (event) => {
 
 }
+
