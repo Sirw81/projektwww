@@ -13,6 +13,13 @@ body {
       overflow-x: hidden;
 }
 
+/*LIGHT MODE*/
+body.light-mode {
+  background-color: white;
+  color: black;
+}
+
+
 input::placeholder {
     font-family: 'DM Sans';
 }
