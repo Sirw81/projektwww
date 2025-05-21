@@ -63,3 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+document.getElementById('sharePost').onclick = (event) => {
+
+}
