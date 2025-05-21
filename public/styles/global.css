@@ -20,6 +20,14 @@ body.light-mode {
 }
 
 
+textarea  {
+    font-family: 'DM Sans';
+}
+
+input {
+    font-family: 'DM Sans';
+}
+
 input::placeholder {
     font-family: 'DM Sans';
 }
