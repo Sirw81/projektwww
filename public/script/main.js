@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (toggleBtn) {
-    toggleBtn.textContent = isLight ? "MOTYW: ciemny" : "MOTYW: jasny";
+    toggleBtn.textContent = isLight ? "MOTYW: JASNY" : "MOTYW: CIEMNY";
 
     toggleBtn.addEventListener("click", () => {
       const isNowLight = body.classList.toggle("light-mode");
@@ -55,8 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       toggleBtn.textContent = isNowLight
-        ? "MOTYW: ciemny"
-        : "MOTYW: jasny";
+        ? "MOTYW: JASNY"
+        : "MOTYW: CIEMNY";
 
       localStorage.setItem("theme", isNowLight ? "light" : "dark");
     });
