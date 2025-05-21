@@ -215,7 +215,18 @@ header {
     border: 2px solid #000000;
     background-color: rgb(100,100,100);
 }
+.ad{
 
+  margin-top: 150px;
+}
+.ad img{
+  margin: auto;
+  width: 80%;
+  height: auto;
+  border-radius: 5%;
+  display: block;
+   border: #000000 solid 3px;
+}
 
 /*LIGHT MODE*/
 body.light-mode header {
@@ -310,14 +321,14 @@ body.light-mode #profileAvatar {
   border: 2px solid #cccccc;
   background-color: #e0e0e0;
 }
-.ad{
+body.light-mode .ad{
 
   margin: auto;
   margin-top: 100px;
-  background-color: rgb(100,100,100);
+  background-color: rgb(200,200,200);
   width: 200px;
   height: 160px;
-  border: #000000, solid, 3px;
+  border: #a0a0a0, solid, 3px;
   border-radius: 5%;
 
 }
