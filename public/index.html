@@ -35,14 +35,35 @@
             </nav>
             <section class="mid">
                 <div id="homeSection">
-                <div class="post">
                     <form id="postForm" class="post-form">
                         <h3>Dodaj post</h3>
                         <textarea name="content" placeholder="Dodaj post"></textarea>
                         <input type="file" name="image" accept="image/*">
                         <button id="sharePost" type="submit">Opublikuj</button>
                     </form>
-                </div>
+                    <div id="PostList">
+                        <div class="post">
+                            <div class="post-header">
+                                <img src="img/placeholder.png" alt="Avatar" class="post-avatar">
+                                <div class="post-userinfo">
+                                    <span class="post-author">Mustafa Wąs</span>
+                                    <span class="post-date">23 maja 2025</span>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <p class="post-text">
+                                    przykładowy post rgrgetrgetg tethteet ehbtert rrgbrgf rgbgrhbt rbrghbrgbh
+                                    rgbhgrbhrgyb gyrbgrhbrgybh rbhrgybhygrbhrbh rhbryhbryhbrhbryh
+                                </p>
+                                <img src="img/placeholder.png" alt="Post image" class="post-image">
+                            </div>
+                            <div class="post-actions">
+                                <button class="btn-like">Like</button>
+                                <button class="btn-save">Zapisz</button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
                 <div id="profileSection" style="display:none">
                     <h2>Profil</h2>
