@@ -13,8 +13,8 @@ const kodHTML = `<div class="post">
       <img src="img/placeholder.png" alt="Post image" class="post-image">
   </div>
   <div class="post-actions">
-      <button class="btn-like">Like</button>
-      <button class="btn-save">Zapisz</button>
+      <button class="btn-like">👍</button>
+      <button class="btn-save">🔖</button>
   </div>
 </div>`
 
