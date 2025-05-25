@@ -36,7 +36,7 @@ header {
     animation-name: extend;
     animation-duration: 0.3s;
   }
-  
+
   .menu-content {
     position: absolute;
     top: 60px;
@@ -91,12 +91,12 @@ header {
     background-color: rgb(40, 40, 40);
     width: 25%;
 }
-  
+
   .mid {
     background-color: rgb(50, 50, 50);
     width: 50%;
   }
-  
+
   .right {
     background-color: rgb(40, 40, 40);
     width: 25%;
@@ -108,7 +108,7 @@ header {
       padding: 20px;
       gap: 10px;
   }
-  
+
   .sidebar-btn {
       background-color: rgb(40, 40, 40);
       color: white;
@@ -120,7 +120,7 @@ header {
       transition: background-color 0.2s;
       cursor: pointer;
   }
-  
+
   .sidebar-btn:hover {
       background-color: rgb(60, 60, 60);
   }
@@ -291,7 +291,7 @@ header {
   display: block;
 }
 
-.post-image[src=""], 
+.post-image[src=""],
 .post-image:not([src]) {
   display: none;
 }
@@ -302,7 +302,7 @@ header {
   gap: 10px;
 }
 
-.btn-like, .btn-save {
+.btn-like, .btn-save, .btn-unsave {
   background-color: rgb(0, 123, 255);
   color: white;
   border: none;
@@ -359,14 +359,14 @@ header {
   background-color: rgb(0, 100, 210);
 }
 
-  
+
   /*MEDIA QUERY*/
   @media (max-width: 768px) {
     .container {
       flex-direction: column;
       height: auto;
     }
-    
+
     .left,
     .mid,
     .right {
@@ -527,4 +527,25 @@ body.light-mode #uploadAvatarBtn {
 
 body.light-mode #uploadAvatarBtn:hover {
   background-color: #0056b3;
+}
+
+#search_dialog {
+  width: 300px;
+  height: 150px;
+  position: absolute;
+  top: calc(50% - 75px);
+  left: calc(50% - 150px);
+  margin: 0;
+}
+
+#search_dialog p, #search_dialog form {
+  text-align: center;
+}
+
+#search_dialog form {
+  margin-top: 20px;
+}
+
+#search_input {
+  width: 100%;
 }
