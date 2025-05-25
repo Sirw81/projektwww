@@ -16,6 +16,7 @@ header {
 
 #avatar {
     height: 40px;
+    width: 40px;
     border-radius: 50%;
     object-fit: cover;
     border: #ffffff solid 1px;
@@ -612,7 +613,7 @@ body.light-mode #search_dialog {
 
 body.light-mode #search_input {
 
-    width: 100%;
+  width: 100%;
     max-width: 300px;
     margin-bottom: 20px;
     padding: 12px;
