@@ -8,9 +8,32 @@ import {
   setDoc
 } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
+function handleShowPassword(element, inputId) {
+    const showing = document.getElementById(inputId).type == 'text'
+    if (showing) {
+        element.style.background = 'url("/public/img/showpassword.png") bottom/cover';
+        document.getElementById(inputId).type = 'password'
+    }
+    else {
+        element.style.background = 'url("/public/img/hidepassword.png") bottom/cover';
+        document.getElementById(inputId).type = 'text'
+    }
+}
+
 document.addEventListener("DOMContentLoaded",() =>{
 
     const form = document.getElementById("registerForm");
+    const showPassword = document.getElementById("showPassword");
+    const showConfirmPassword = document.getElementById("showConfirmPassword");
+
+    showPassword.onclick = (event) => {
+        event.preventDefault()
+        handleShowPassword(showPassword, 'password')
+    }
+    showConfirmPassword.onclick = (event) => {
+        event.preventDefault()
+        handleShowPassword(showConfirmPassword, 'confirmpassword')
+    }
 
     form.addEventListener("submit",async (e)=>{
         e.preventDefault();
