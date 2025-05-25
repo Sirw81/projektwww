@@ -167,3 +167,52 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// posty z jsonplaceholder.com, fetch API
+
+const kodHTML = `<div class="post">
+  <div class="post-header">
+      <img src="img/placeholder.png" alt="Avatar" class="post-avatar">
+      <div class="post-userinfo">
+          <span class="post-author">{AUTOR}</span>
+          <span class="post-date">{DATA}</span>
+      </div>
+  </div>
+  <div class="post-content">
+      <p class="post-text">{KONTENT}</p>
+      <img src="img/placeholder.png" alt="Post image" class="post-image">
+  </div>
+  <div class="post-actions">
+      <button class="btn-like">Like</button>
+      <button class="btn-save">Zapisz</button>
+  </div>
+</div>`
+
+const autorzyny = ['Lech Wałęsa', 'Andrzej Duda', 'Jarosław Kaczyński', 'Donald Tusk', 'Radosław Sikorski', 'Sławomir Mentzen', 'Maciej Maciak']
+function dodajPost(post) {
+  const autorzyna = autorzyny[Math.floor(Math.random() * autorzyny.length)]
+  const data = new Date(Date.now() - Math.round((Math.random() * 100000000000))).toLocaleString('fr-FR')
+  const kod = kodHTML.replace('{AUTOR}', autorzyna).replace('{DATA}', data).replace('{KONTENT}', post.body)
+  document.getElementById('PostList').insertAdjacentHTML('afterbegin', kod)
+}
+
+async function znajdzPosty() {
+  const ids = new Set()
+  const posts = []
+  while (ids.size < 10) {
+    const random = Math.round(Math.random() * 100)
+    ids.add(random)
+  }
+
+  const promises = Array.from(ids).map(id =>
+    fetch("https://jsonplaceholder.typicode.com/posts/" + id)
+      .then(response => response.json())
+  )
+  const results = await Promise.all(promises)
+  posts.push(...results)
+  posts.forEach(post => {
+    dodajPost(post)
+  });
+}
+
+znajdzPosty()
