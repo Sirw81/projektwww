@@ -538,9 +538,9 @@ body.light-mode #uploadAvatarBtn:hover {
   to {width: 400px;}
 }
 
-#search_dialog {
+body #search_dialog {
   position: absolute;
-  top: calc(50% - 75px);
+  top: calc(50% - 150px);
   left: calc(50% - 200px);
   margin: 0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -552,6 +552,26 @@ body.light-mode #uploadAvatarBtn:hover {
   padding-top: 10px;
   border-radius: 10px;
   border-color: rgb(40, 40, 40);
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  text-align: center;
+  animation-name: rozsun;
+  animation-duration: 0.5s;
+}
+
+body.light-mode #search_dialog {
+  position: absolute;
+  top: calc(50% - 150px);
+  left: calc(50% - 200px);
+  margin: 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: rgb(40, 40, 40);
+
+  background-color: #ffffff;
+  width: 400px;
+  height: 300px;
+  padding-top: 10px;
+  border-radius: 10px;
+  border-color: #ffffff;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   text-align: center;
   animation-name: rozsun;
@@ -586,6 +606,20 @@ body.light-mode #uploadAvatarBtn:hover {
     border-radius: 5px;
     background-color: rgb(60, 60, 60);
     color: #eee;
+    font-size: 16px;
+    text-align: left;
+}
+
+body.light-mode #search_input {
+
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #eee;
+    color: rgb(60, 60, 60);
     font-size: 16px;
     text-align: left;
 }
