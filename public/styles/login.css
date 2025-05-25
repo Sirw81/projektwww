@@ -15,6 +15,10 @@ body {
     margin: 0 auto 20px auto;
 }
 
+@keyframes rozsun {
+  from {width: 200px;}
+  to {width: 400px;}
+}
 
 .logbox {
     background-color: rgb(40, 40, 40);
@@ -23,6 +27,8 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     text-align: center;
+    animation-name: rozsun;
+    animation-duration: 0.5s;
 }
 
 .logbox h2 {

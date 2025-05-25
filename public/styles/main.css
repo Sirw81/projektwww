@@ -20,6 +20,12 @@ header {
     object-fit: cover;
     border: #ffffff solid 1px;
 }
+
+@keyframes extend {
+  from {height: 0px;}
+  to {height: 60px;}
+}
+
   .menu {
     position: relative;
     display: flex;
@@ -27,6 +33,8 @@ header {
     padding: 0 20px;
     height: 60px;
     z-index: 10;
+    animation-name: extend;
+    animation-duration: 0.3s;
   }
   
   .menu-content {
