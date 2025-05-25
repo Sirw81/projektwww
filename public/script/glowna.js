@@ -74,7 +74,8 @@ async function wygenerujUUIDPosta() {
 
 async function wyslijPosta() {
   const content = document.getElementById('contentInput').value
-  if (content.length < 0) return alert('Post nie może być pusty!')
+  if (content.length < 1) return alert('Post nie może być pusty!')
+  if (content.length > 301) return alert('Post nie może przekraczać 301 znaków!')
 
   const uuid = await wygenerujUUIDPosta()
   const post = {
@@ -96,6 +97,11 @@ async function wyslijPosta() {
 document.getElementById('postForm').onsubmit = (event) => {
   event.preventDefault()
   wyslijPosta()
+}
+
+document.getElementById('postForm').oninput = () => {
+  const count = document.getElementById('contentInput').value.length
+  document.getElementById('wordCount').textContent = count + '/301'
 }
 
 // const autorzyny = ['Lech Wałęsa', 'Andrzej Duda', 'Jarosław Kaczyński', 'Donald Tusk', 'Radosław Sikorski', 'Sławomir Mentzen', 'Maciej Maciak']

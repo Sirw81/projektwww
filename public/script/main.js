@@ -5,7 +5,8 @@ import { doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.2/fireba
 import { getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
 //jak niezalogowany przenosi na login
-if (window.location.pathname.endsWith('index.html')) {
+const pagelink = window.location.pathname
+if (pagelink.endsWith('index.html') || pagelink.endsWith('public/')) {
   if (localStorage.getItem('isLoggedIn') !== 'true') {
     window.location.href = 'login.html';
   }
@@ -15,6 +16,7 @@ if (window.location.pathname.endsWith('index.html')) {
     logoutBtn.addEventListener('click', () => {
       localStorage.removeItem('isLoggedIn');
       window.location.href = 'login.html';
+      localStorage.removeItem('userUID')
     });
   }
 }

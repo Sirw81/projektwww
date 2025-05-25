@@ -18,14 +18,20 @@
         <form id="registerForm">
             <input type="text" id="username" name="username" placeholder="Nazwa użytkownika" required />
             <input type="email" id="email" name="email" placeholder="Adres email" required />
-            <input type="password" id="password" name="password" placeholder="Hasło" required />
-            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Powtórz hasło" required />
+            <div>
+                <input type="password" id="password" name="password" placeholder="Hasło" required>
+                <button id="showPassword"></button>
+            </div>
+            <div>
+                <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Powtórz hasło" required>
+                <button id="showConfirmPassword"></button>
+            </div>
             <button type="submit">Zarejestruj się</button>
         </form>
         <p class="regtext">
             Masz już konto? <a href="login.html" class="link-button">Zaloguj się</a>.
         </p>
-        
+
     </div>
     <footer class="footer">
         © 2025 Y. Wszelkie prawa zastrzeżone.

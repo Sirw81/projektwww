@@ -624,3 +624,13 @@ body.light-mode #search_input {
     font-size: 16px;
     text-align: left;
 }
+
+#wordCount {
+    position: relative;
+    margin: auto;
+    text-align: right;
+    right: 10px;
+    bottom: 40px;
+    color: gray;
+    font-size: small;
+}
