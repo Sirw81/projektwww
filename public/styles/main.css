@@ -14,6 +14,10 @@ header {
     height: 40px;
 }
 
+#logo:hover {
+  cursor: pointer;
+}
+
 #avatar {
     height: 40px;
     width: 40px;
@@ -133,7 +137,7 @@ header {
 @keyframes fade {
   from {background-color: transparent; box-shadow: none;}
   to {background-color: rgba(29, 161, 242, 0.466);}
-}  
+}
 
   .sidebar-btn:hover {
       background-color: rgba(29, 161, 242, 0.466);
@@ -445,7 +449,7 @@ body.light-mode .sidebar-btn:hover {
 body.light-mode .menu-content {
   background-color: #f9f9f9;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  
+
 }
 
 body.light-mode .menu-content button {

@@ -141,6 +141,7 @@ document.getElementById('homepage').onclick = () => location.href = location.ori
 // dialog wyszukiwania
 document.getElementById('search').onclick = () => {
   document.getElementById('search_dialog').show()
+  document.getElementById('search_input').focus()
 }
 
 document.getElementById('search_dialog').onsubmit = (event) => {
