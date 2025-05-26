@@ -157,3 +157,8 @@ document.getElementById('search_dialog').onsubmit = (event) => {
 document.getElementById('closeSearch').onclick = () => {
   document.getElementById('search_dialog').close()
 }
+
+const logo = document.getElementById('logo')
+if (logo) logo.onclick = () => {
+  location.href = location.origin
+}
