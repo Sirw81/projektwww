@@ -7,6 +7,8 @@
     <title>Home / Y</title>
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <link rel="icon" href="img/logo_darkmode.svg" type="image/png">
     <script type="module" src="script/main.js"></script>
     <script type="module" src="script/glowna.js"></script>
@@ -29,9 +31,9 @@
         <div class="container">
             <nav class="left">
                 <div class="sidebar-buttons">
-                    <button class="sidebar-btn" id="homepage">GŁÓWNA 🏠</button>
-                    <button class="sidebar-btn" id="search">WYSZUKAJ 🔎</button>
-                    <button class="sidebar-btn" id="saved">ZAPISANE 🔖</button>
+                    <button class="sidebar-btn" id="homepage">GŁÓWNA <i class="fas fa-home"></i></button>
+                    <button class="sidebar-btn" id="search">WYSZUKAJ <i class="fas fa-search"></i></button>
+                    <button class="sidebar-btn" id="saved">ZAPISANE <i class="fas fa-bookmark"></i></button>
 
                 </div>
             </nav>
@@ -43,7 +45,6 @@
                             <textarea id="contentInput" name="content" placeholder="Dodaj post"></textarea>
                             <p id="wordCount">0/301</p>
                         </div>
-                        <input type="file" name="image" accept="image/*">
                         <button id="sharePost" type="submit">Opublikuj</button>
                     </form>
                     <div id="PostList">
@@ -58,16 +59,12 @@
                     <button id="uploadAvatarBtn">Wyślij avatar</button>
 
                 </div>
+                        <div id="savedSection"style="display: none;">
+                        <h2>Zapisane posty</h3>
+                        <div id="SavedPostList">
+                        </div>
+                        </div>
 
-                <div id="profileSection" style="display:none">
-                    <h2>Profil</h2>
-                    <img src="img/placeholder.png" alt="avatar" id="profileAvatar">
-                    <p>Nazwa:test</p>
-                    <p>email test</p>
-                    <input type="file" id="avatarUpload" accept="image/*" />
-                    <button id="uploadAvatarBtn">Wyślij avatar</button>
-
-                </div>
             </section>
             <aside class="right">
                 <div class="ad">

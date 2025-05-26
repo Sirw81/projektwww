@@ -11,14 +11,14 @@ const kodHTML = `<div class="post">
       <img src="img/placeholder.png" alt="Post image" class="post-image">
   </div>
   <div class="post-actions">
-      <button class="btn-like">👍</button>
-      <button class="btn-unsave">🔖⃠</button>
+      <button class="btn-like"><i class="fas fa-thumbs-up"></i></button>
+      <button class="btn-unsave"><i class="fas fa-trash"></i> </button>
   </div>
 </div>`
 
 function dodajPost(post) {
   const kod = kodHTML.replace('{AUTOR}', post[0]).replace('{DATA}', post[1]).replace('{KONTENT}', post[2])
-  document.getElementById('PostList').insertAdjacentHTML('afterbegin', kod)
+  document.getElementById('SavedPostList').insertAdjacentHTML('afterbegin', kod)
 }
 
 function wygenerujPosty() {

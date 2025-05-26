@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const profileBtn = document.getElementById('profile');
   const homeSection = document.getElementById("homeSection");
   const profileSection = document.getElementById("profileSection");
+  const savedSection = document.getElementById("savedSection");
   const profileAvatar = document.getElementById("profileAvatar");
 
   const userUID = localStorage.getItem('userUID');
@@ -52,19 +53,29 @@ if (avatar) {
     profileSection.style.display = "none";
   }
 
-  if (profileBtn && homeSection && profileSection) {
+  if (profileBtn && homeSection && profileSection && savedSection) {
     profileBtn.addEventListener("click", () => {
       homeSection.style.display = "none";
+      savedSection.style.display = "none"
       profileSection.style.display = "block";
     });
   }
 
   const homeBtn = document.getElementById('homepage');
-  if (homeBtn && homeSection && profileSection) {
+  if (homeBtn && homeSection && profileSection && savedSection) {
     homeBtn.addEventListener("click", () => {
       profileSection.style.display = "none";
+      savedSection.style.display = "none";
       homeSection.style.display = "block";
     });
+  }
+  const savedBtn = document.getElementById("saved");
+  if(savedBtn && homeSection && profileSection && savedSection){
+savedBtn.addEventListener("click",() =>{
+            profileSection.style.display = "none";
+      savedSection.style.display = "block";
+      homeSection.style.display = "none";
+})
   }
 });
 
@@ -134,9 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// przyciski nawigacyjne
-document.getElementById('saved').onclick = () => location.href = location.origin + '/saved.html'
-document.getElementById('homepage').onclick = () => location.href = location.origin
 
 // dialog wyszukiwania
 document.getElementById('search').onclick = () => {
