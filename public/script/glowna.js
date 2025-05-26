@@ -14,7 +14,7 @@ const postHTML = `<div class="post">
       <p class="post-text">{KONTENT}</p>
   </div>
   <div class="post-actions">
-      <button class="btn-like"><i class="fas fa-thumbs-up"></i>
+      <button class="btn-like"><i class="fas fa-thumbs-up"> {LAJKI}</i>
 </button>
       <button class="btn-save"><i class="fas fa-bookmark"></i></button>
   </div>
@@ -47,11 +47,13 @@ async function dodajPost(post) {
   let autor = authorObject.username
   let data = new Date(post.date).toLocaleDateString()
   let kontent = post.content
+  let lajki = post.lajki
   const kod = postHTML
     .replace('{AWATAR}', avatar)
     .replace('{AUTOR}', autor)
     .replace('{DATA}', data)
     .replace('{KONTENT}', kontent)
+    .replace('{LAJKI}', post.lajkujacy.length)
   document.getElementById('PostList').insertAdjacentHTML('afterbegin', kod)
 }
 
@@ -83,7 +85,8 @@ async function wyslijPosta() {
     id: uuid,
     author_id: localStorage.getItem('userUID'),
     date: Date.now(),
-    content: content
+    content: content,
+    lajkujacy: []
   }
 
   fetch('http://localhost:3000/posts', {method: 'POST', body: JSON.stringify(post)})
@@ -95,9 +98,27 @@ async function wyslijPosta() {
     .catch(error => alert('Błąd:', error))
 }
 
+async function polajkuj(post) {
+  
+    console.log("lajk");
+  if (!post.lajkujacy.includes(authorObject.username)){
+    post.lajkujacy.push(authorObject.username);
+  }
+  else
+  {
+    post.lajkujacy.splice(post.lajkujacy.indexOf(authorObject.username));
+  }
+}
+
 document.getElementById('postForm').onsubmit = (event) => {
   event.preventDefault()
   wyslijPosta()
+}
+
+//jak to ogarnac???
+document.getElementById('post.btn-like').onsubmit = (event) => {
+  event.preventDefault()
+  polajkuj(post)
 }
 
 document.getElementById('postForm').oninput = () => {
