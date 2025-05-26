@@ -75,6 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
     "img/ad/02oguh.png",
     "img/ad/03dokop.png",
     "img/ad/04traf.png",
+    "img/ad/05kujawski.png",
+    "img/ad/06tis.png",
+    "img/ad/07nigdy.png"
   ];
   const random = Math.floor(Math.random() * images.length);
   const selected = images[random];

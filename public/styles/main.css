@@ -36,7 +36,13 @@ header {
     z-index: 10;
   }
 
+  @keyframes pokazopcje {
+  from {opacity: 0%;}
+  to {opacity: 100%;}
+}
+
   .menu-content {
+    opacity: 100%;
     position: absolute;
     top: 60px;
     right: 0;
@@ -68,6 +74,8 @@ header {
     cursor: pointer;
     transition: background-color 0.2s;
     text-align: left;
+    animation-name: pokazopcje;
+    animation-duration: 1.2s;
 }
 
 .menu-content button:hover {
@@ -111,19 +119,28 @@ header {
   }
 
   .sidebar-btn {
-      background-color: rgb(40, 40, 40);
+      background-color: transparent;
       color: white;
       border: none;
       padding: 12px 16px;
       text-align: right;
-      font-size: 1rem;
-      border-radius: 6px;
+      font-size: 1.5rem;
+      border-radius: 12px;
       transition: background-color 0.2s;
       cursor: pointer;
   }
 
+@keyframes fade {
+  from {background-color: transparent; box-shadow: none;}
+  to {background-color: rgba(29, 161, 242, 0.466);}
+}  
+
   .sidebar-btn:hover {
-      background-color: rgb(60, 60, 60);
+      background-color: rgba(29, 161, 242, 0.466);
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+      animation-name: fade;
+      animation-duration: 1s;
+
   }
   /*MAIN - FORMULARZ POSTÓW*/
   .post-form {
@@ -409,17 +426,26 @@ body.light-mode .right {
 }
 
 body.light-mode .sidebar-btn {
-  background-color: #e0e0e0;
+  background-color: transparent;
   color: black;
 }
 
+@keyframes fade2 {
+  from {background-color: transparent; box-shadow: none;}
+  to {background-color: rgba(29, 161, 242, 0.466); box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);}
+}
+
 body.light-mode .sidebar-btn:hover {
-  background-color: #d0d0d0;
+  background-color: rgba(29, 161, 242, 0.466);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  animation-name: fade2;
+  animation-duration: 0.3s;
 }
 
 body.light-mode .menu-content {
   background-color: #f9f9f9;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
 }
 
 body.light-mode .menu-content button {
