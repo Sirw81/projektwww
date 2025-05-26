@@ -16,7 +16,6 @@ if (!pagelink.endsWith('login.html') && !pagelink.endsWith('register.html')) {
     logoutBtn.addEventListener('click', () => {
       localStorage.removeItem('isLoggedIn');
       window.location.href = 'login.html';
-      localStorage.removeItem('userUID')
     });
   }
 }
