@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded",() =>{
     }
     showConfirmPassword.onclick = (event) => {
         event.preventDefault()
-        handleShowPassword(showConfirmPassword, 'confirmpassword')
+        handleShowPassword(showConfirmPassword, 'confirmPassword')
     }
 
     form.addEventListener("submit",async (e)=>{

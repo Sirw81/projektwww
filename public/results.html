@@ -10,6 +10,7 @@
     <link rel="icon" href="img/logo_darkmode.svg" type="image/png">
     <script type="module" src="script/main.js"></script>
     <script type="module" src="script/results.js"></script>
+    <script type="module" src="script/theme.js"></script>
 </head>
 
 <body>
@@ -69,10 +70,11 @@
         </div>
 
         <dialog id="search_dialog">
+            <button type="button" id="closeSearch">X</button>
             <h2>Szukaj<h2>
             <p>Co chcesz wyszukać?</p>
+            <input id="search_input"></input>
             <form method="dialog">
-                <input id="search_input"></input>
                 <button>Wyszukaj</button>
             </form>
         </dialog>
