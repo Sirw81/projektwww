@@ -16,7 +16,7 @@ const postHTML = `<div class="post">
   <div class="post-actions">
       <button class="btn-like"><i class="fas fa-thumbs-up"> {LAJKI}</i>
 </button>
-      <button class="btn-save"><i class="fas fa-bookmark"></i></button>
+      <button class="btn-save" id="lajk" postid={ID}><i class="fas fa-bookmark"></i></button>
   </div>
 </div>`
 
@@ -47,12 +47,13 @@ async function dodajPost(post) {
   let autor = authorObject.username
   let data = new Date(post.date).toLocaleDateString()
   let kontent = post.content
-  let lajki = post.lajki
+  let lajkujacy = []
   const kod = postHTML
     .replace('{AWATAR}', avatar)
     .replace('{AUTOR}', autor)
     .replace('{DATA}', data)
     .replace('{KONTENT}', kontent)
+    .replace('{ID}', id)
     .replace('{LAJKI}', post.lajkujacy.length)
   document.getElementById('PostList').insertAdjacentHTML('afterbegin', kod)
 }
@@ -115,10 +116,10 @@ document.getElementById('postForm').onsubmit = (event) => {
   wyslijPosta()
 }
 
-//jak to ogarnac???
-document.getElementById('post.btn-like').onsubmit = (event) => {
+//jak to ogarnac??? 
+document.getElementById('lajk').onsubmit = (event) => {
   event.preventDefault()
-  polajkuj(post)
+  polajkuj(postid)
 }
 
 document.getElementById('postForm').oninput = () => {
