@@ -212,7 +212,7 @@ body.light-mode #theme-toggle:hover {
     position: relative;
     bottom: 60px;
     left: 130px;
-    background: url('/public/img/showpassword.png') bottom/cover;
+    background: url('/img/showpassword.png') bottom/cover;
     filter: invert();
 }
 

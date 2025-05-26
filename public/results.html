@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search results / Y</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" href="img/logo_darkmode.svg" type="image/png">
+    <script type="module" src="script/main.js"></script>
+    <script type="module" src="script/results.js"></script>
+</head>
+
+<body>
+    <header>
+        <img src="img/logo_darkmode.svg" alt="logo" id="logo">
+        <nav class="menu">
+            <img src="img/placeholder.png" alt="avatar" id="avatar">
+            <div class="menu-content">
+                <button id="profile"> PROFIL</button>
+                <button id="theme-toggle"></button>
+                <button id="logoutButton">WYLOGUJ</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <nav class="left">
+                <div class="sidebar-buttons">
+                    <button class="sidebar-btn" id="homepage">GŁÓWNA</button>
+                    <button class="sidebar-btn" id="search">WYSZUKAJ</button>
+                    <button class="sidebar-btn" id="saved">ZAPISANE</button>
+
+                </div>
+            </nav>
+            <section class="mid">
+                <div id="homeSection">
+                    <h2 id="resultsHeader"></h2>
+                    <div id="PostList">
+                    </div>
+                </div>
+                <div id="profileSection" style="display:none">
+                    <h2>Profil</h2>
+                    <img src="img/placeholder.png" alt="avatar" id="profileAvatar">
+                    <p>Nazwa:test</p>
+                    <p>email test</p>
+                    <input type="file" id="avatarUpload" accept="image/*" />
+                    <button id="uploadAvatarBtn">Wyślij avatar</button>
+
+                </div>
+
+                <div id="profileSection" style="display:none">
+                    <h2>Profil</h2>
+                    <img src="img/placeholder.png" alt="avatar" id="profileAvatar">
+                    <p>Nazwa:test</p>
+                    <p>email test</p>
+                    <input type="file" id="avatarUpload" accept="image/*" />
+                    <button id="uploadAvatarBtn">Wyślij avatar</button>
+
+                </div>
+            </section>
+            <aside class="right">
+                <div class="ad">
+                    <h3>Reklama</h3>
+                    <img src="" alt="ad" id="ad">
+                </div>
+            </aside>
+        </div>
+
+        <dialog id="search_dialog">
+            <h2>Szukaj<h2>
+            <p>Co chcesz wyszukać?</p>
+            <form method="dialog">
+                <input id="search_input"></input>
+                <button>Wyszukaj</button>
+            </form>
+        </dialog>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>

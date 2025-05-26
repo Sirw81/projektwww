@@ -634,3 +634,11 @@ body.light-mode #search_input {
     color: gray;
     font-size: small;
 }
+
+#resultsHeader {
+    color: white;
+    margin: auto;
+    margin-top: 40px;
+    width: 80%;
+    text-align: center;
+}

@@ -1,0 +1,67 @@
+import { db } from './firebase-config.js';
+import { doc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+import { getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+const postHTML = `<div class="post">
+  <div class="post-header">
+      <img src="{AWATAR}" alt="Avatar" class="post-avatar">
+      <div class="post-userinfo">
+          <span class="post-author">{AUTOR}</span>
+          <span class="post-date">{DATA}</span>
+      </div>
+  </div>
+  <div class="post-content">
+      <p class="post-text">{KONTENT}</p>
+  </div>
+  <div class="post-actions">
+      <button class="btn-like">👍</button>
+      <button class="btn-save">🔖</button>
+  </div>
+</div>`
+
+// <p class="post-text">{KONTENT}</p>
+// <img src="img/placeholder.png" alt="Post image" class="post-image">
+
+async function zaladujPosty() {
+  const posts = await fetch('http://localhost:3000/posts')
+    .then(resp => resp.json())
+  const query = location.search.split('?search=')[1]
+  let index = 0
+  posts.forEach(post => {
+    if (post.content.includes(query)) {
+        index++
+        dodajPost(post)
+    }
+  });
+  if (index == 0) {
+    document.getElementById('resultsHeader').textContent = `Ups! Nie znaleźliśmy żadnych wyników.`
+  } else {
+    document.getElementById('resultsHeader').textContent = `Znalezione wyniki (${index}):`
+  }
+}
+
+async function getAuthor(authorId) {
+  const userRef = doc(db, 'users', authorId)
+  const user = await getDoc(userRef)
+  if (user.exists()) {
+    const userData = user.data()
+    return {username: userData.username, avatar: userData.photoURL}
+  }
+  return {username: 'Nieznany użytkownik', avatar: 'img/placeholder.png'}
+}
+
+async function dodajPost(post) {
+  let authorObject = await getAuthor(post.author_id)
+  let avatar = authorObject.avatar
+  let autor = authorObject.username
+  let data = new Date(post.date).toLocaleDateString()
+  let kontent = post.content
+  const kod = postHTML
+    .replace('{AWATAR}', avatar)
+    .replace('{AUTOR}', autor)
+    .replace('{DATA}', data)
+    .replace('{KONTENT}', kontent)
+  document.getElementById('PostList').insertAdjacentHTML('afterbegin', kod)
+}
+
+zaladujPosty()

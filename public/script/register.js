@@ -11,11 +11,11 @@ import {
 function handleShowPassword(element, inputId) {
     const showing = document.getElementById(inputId).type == 'text'
     if (showing) {
-        element.style.background = 'url("/public/img/showpassword.png") bottom/cover';
+        element.style.background = 'url("/img/showpassword.png") bottom/cover';
         document.getElementById(inputId).type = 'password'
     }
     else {
-        element.style.background = 'url("/public/img/hidepassword.png") bottom/cover';
+        element.style.background = 'url("/img/hidepassword.png") bottom/cover';
         document.getElementById(inputId).type = 'text'
     }
 }

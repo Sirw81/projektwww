@@ -1,0 +1,28 @@
+h1, h4 {
+    color: white;
+}
+
+body.light-mode h1,
+body.light-mode h4 {
+    color: black;
+}
+
+#returnHomepage {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  z-index: 1000;
+  user-select: none;
+}
+
+#returnHomepage:hover {
+  background-color: #666;
+  color: #f0f0f0;
+}

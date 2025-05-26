@@ -6,7 +6,7 @@ import { getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-fires
 
 //jak niezalogowany przenosi na login
 const pagelink = window.location.pathname
-if (pagelink.endsWith('index.html') || pagelink.endsWith('public/')) {
+if (!pagelink.endsWith('login.html') && !pagelink.endsWith('register.html')) {
   if (localStorage.getItem('isLoggedIn') !== 'true') {
     window.location.href = 'login.html';
   }
@@ -175,10 +175,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // przyciski nawigacyjne
-document.getElementById('saved').onclick = () => location.href = location.origin + '/public/saved.html'
-document.getElementById('homepage').onclick = () => location.href = location.origin + '/public'
+document.getElementById('saved').onclick = () => location.href = location.origin + '/saved.html'
+document.getElementById('homepage').onclick = () => location.href = location.origin
 
 // dialog wyszukiwania
 document.getElementById('search').onclick = () => {
   document.getElementById('search_dialog').show()
+}
+
+document.getElementById('search_dialog').onsubmit = (event) => {
+  const search = document.getElementById('search_input').value
+  if (search.length < 1) {
+    event.preventDefault()
+    alert('Wyszukaj coś!')
+  } else {
+    location.href = location.origin + '/results.html?search=' + search
+  }
 }
