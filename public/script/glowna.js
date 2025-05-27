@@ -14,7 +14,7 @@ const postHTML = `<div class="post">
       <p class="post-text">{KONTENT}</p>
   </div>
   <div class="post-actions">
-      <button class="btn-like" type="button" id="{ID}"><i class="fas fa-thumbs-up"> {LAJKI}</i>
+      <button class="btn-like{B}" type="button" id="{ID}"><i class="fas fa-thumbs-up"> {LAJKI}</i>
 </button>
       <button class="btn-save"><i class="fas fa-bookmark"></i></button>
   </div>
@@ -54,6 +54,16 @@ async function dodajPost(post) {
   let data = new Date(post.date).toLocaleDateString()
   let kontent = post.content
   let lajkujacy = []
+  const userUID = localStorage.getItem('userUID')
+  let blue = ""
+  
+    if (!post.lajkujacy.includes(userUID)){
+      blue=""
+    }
+    else
+    {
+      blue="-blue"
+    }
   const kod = postHTML
     .replace('{AWATAR}', avatar)
     .replace('{AUTOR}', autor)
@@ -61,6 +71,7 @@ async function dodajPost(post) {
     .replace('{KONTENT}', kontent)
     .replace('{ID}', post.id)
     .replace('{LAJKI}', post.lajkujacy.length)
+    .replace('{B}', blue)
   document.getElementById('PostList').insertAdjacentHTML('afterbegin', kod)
 }
 
@@ -123,6 +134,7 @@ async function polajkuj(button) {
   else
   {
     post.lajkujacy.splice(post.lajkujacy.indexOf(userUID));
+    liked = false
   }
 
   fetch('http://localhost:3000/posts/' + postID, { method: 'PUT', body: JSON.stringify(post) })
