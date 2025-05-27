@@ -14,9 +14,9 @@ const postHTML = `<div class="post">
       <p class="post-text">{KONTENT}</p>
   </div>
   <div class="post-actions">
-      <button class="btn-like{B}" type="button" id="{ID}"><i class="fas fa-thumbs-up"> {LAJKI}</i>
+      <button class="btn-like{B}" type="button" id="{ID}" aria-label="Like"><i class="fas fa-thumbs-up"> {LAJKI}</i>
 </button>
-      <button class="btn-save"><i class="fas fa-bookmark"></i></button>
+      <button class="btn-save"><i class="fas fa-bookmark"aria-label="Save"></i></button>
   </div>
 </div>`
 
