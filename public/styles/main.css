@@ -344,7 +344,8 @@ header {
 
 .btn-like-blue {
   background-color: transparent;
-  color: blue;
+  color: rgb(37, 150, 255);
+  text-shadow: #0056b3 20px;
   border: none;
   padding: 8px 18px;
   border-radius: 12px;
@@ -354,7 +355,7 @@ header {
   transition: background-color 0.2s ease;
 }
 
-.btn-like:hover, .btn-save:hover, .btn-unsave:hover {
+.btn-like:hover, .btn-save:hover, .btn-unsave:hover, .btn-like-blue:hover {
   background-color: #6868688e;
 }
 /* === Avatar Upload === */

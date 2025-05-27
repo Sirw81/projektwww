@@ -28,7 +28,7 @@ async function zaladujPosty() {
     .then(resp => resp.json())
   await Promise.all(posts.map(post => dodajPost(post)));
 
-  const lajki = document.getElementsByClassName('btn-like')
+  const lajki = document.querySelectorAll('.btn-like, .btn-like-blue')
   if (!lajki) return
   Array.from(lajki).forEach(lajk => {
     lajk.onclick = () => {
