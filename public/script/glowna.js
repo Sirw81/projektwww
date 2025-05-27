@@ -11,7 +11,7 @@ const postHTML = `<div class="post">
       </div>
   </div>
   <div class="post-content">
-      <p class="post-text">{KONTENT}</br>ID postu: {ID}</p>
+      <p class="post-text">{KONTENT}</p>
   </div>
   <div class="post-actions">
       <button class="btn-like" type="button" id="{ID}"><i class="fas fa-thumbs-up"> {LAJKI}</i>
@@ -105,11 +105,20 @@ async function wyslijPosta() {
     .catch(error => alert('Błąd:', error))
 }
 
-async function polajkuj(post) {
+async function polajkuj(button) {
 
-    console.log("lajk");
-  if (!post.lajkujacy.includes(authorObject.username)){
-    post.lajkujacy.push(authorObject.username);
+  const userUID = localStorage.getItem('userUID')
+  const postID = button.id
+
+  const posts = await fetch('http://localhost:3000/posts')
+    .then(resp => resp.json())
+  const post = posts.filter(post => post.id == postID)[0]
+  if (!post) return alert('Nie udało się zalajkować posta :(')
+  let liked = false
+
+  if (!post.lajkujacy.includes(userUID)){
+    post.lajkujacy.push(userUID);
+    liked = true
   }
   else
   {
@@ -121,20 +130,12 @@ async function polajkuj(post) {
       if (!response.ok) throw new Error("Błąd podczas aktualizacji posta")
       return response.json()
     })
-    .then(() => {
-    })
     .catch(error => alert('Błąd: ' + error.message))
 }
 
 document.getElementById('postForm').onsubmit = (event) => {
   event.preventDefault()
   wyslijPosta()
-}
-
-//jak to ogarnac???
-document.getElementById('lajk').onsubmit = (event) => {
-  event.preventDefault()
-  polajkuj(postid)
 }
 
 document.getElementById('postForm').oninput = () => {
