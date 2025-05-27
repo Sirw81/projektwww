@@ -1,3 +1,5 @@
+z racji, że repozytorium jest publiczne, zmieniłem klucz API i dodałem ten plik do .gitignore
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
@@ -5,7 +7,7 @@ import { getStorage } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-s
 
 
   const firebaseConfig = {
-    apiKey: "AIzaSyBLcjROtEuBGMfmE5ZTwtBnsTUWPiDMHro",
+    apiKey: "xxxxxxxx",
     authDomain: "projekt-17306.firebaseapp.com",
     projectId: "projekt-17306",
     storageBucket: "projekt-17306.firebasestorage.app",
