@@ -14,9 +14,9 @@ const postHTML = `<div class="post">
       <p class="post-text">{KONTENT}</p>
   </div>
   <div class="post-actions">
-      <button class="btn-like"><i class="fas fa-thumbs-up"> {LAJKI}</i>
+      <button class="btn-like" type="button" id="{ID}"><i class="fas fa-thumbs-up"> {LAJKI}</i>
 </button>
-      <button class="btn-save" id="lajk" postid={ID}><i class="fas fa-bookmark"></i></button>
+      <button class="btn-save"><i class="fas fa-bookmark"></i></button>
   </div>
 </div>`
 
@@ -26,9 +26,15 @@ const postHTML = `<div class="post">
 async function zaladujPosty() {
   const posts = await fetch('http://localhost:3000/posts')
     .then(resp => resp.json())
-  posts.forEach(post => {
-    dodajPost(post)
-  });
+  await Promise.all(posts.map(post => dodajPost(post)));
+
+  const lajki = document.getElementsByClassName('btn-like')
+  if (!lajki) return
+  Array.from(lajki).forEach(lajk => {
+    lajk.onclick = () => {
+      polajkuj(lajk)
+    }
+  })
 }
 
 async function getAuthor(authorId) {
@@ -53,7 +59,7 @@ async function dodajPost(post) {
     .replace('{AUTOR}', autor)
     .replace('{DATA}', data)
     .replace('{KONTENT}', kontent)
-    .replace('{ID}', id)
+    .replace('{ID}', post.id)
     .replace('{LAJKI}', post.lajkujacy.length)
   document.getElementById('PostList').insertAdjacentHTML('afterbegin', kod)
 }
@@ -99,27 +105,39 @@ async function wyslijPosta() {
     .catch(error => alert('Błąd:', error))
 }
 
-async function polajkuj(post) {
-  
-    console.log("lajk");
-  if (!post.lajkujacy.includes(authorObject.username)){
-    post.lajkujacy.push(authorObject.username);
+async function polajkuj(button) {
+
+  const userUID = localStorage.getItem('userUID')
+  const postID = button.id
+
+  const posts = await fetch('http://localhost:3000/posts')
+    .then(resp => resp.json())
+  const post = posts.filter(post => post.id == postID)[0]
+  if (!post) return alert('Nie udało się zalajkować posta :(')
+  let liked = false
+
+  if (!post.lajkujacy.includes(userUID)){
+    post.lajkujacy.push(userUID);
+    liked = true
   }
   else
   {
-    post.lajkujacy.splice(post.lajkujacy.indexOf(authorObject.username));
+    post.lajkujacy.splice(post.lajkujacy.indexOf(userUID));
   }
+
+  fetch('http://localhost:3000/posts/' + postID, { method: 'PUT', body: JSON.stringify(post) })
+    .then(response => {
+      if (!response.ok) throw new Error("Błąd podczas aktualizacji posta")
+      return response.json()
+    })
+    .then(() => {
+    })
+    .catch(error => alert('Błąd: ' + error.message))
 }
 
 document.getElementById('postForm').onsubmit = (event) => {
   event.preventDefault()
   wyslijPosta()
-}
-
-//jak to ogarnac??? 
-document.getElementById('lajk').onsubmit = (event) => {
-  event.preventDefault()
-  polajkuj(postid)
 }
 
 document.getElementById('postForm').oninput = () => {

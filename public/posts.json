@@ -5,7 +5,7 @@
       "author_id": "8owQ5O59Lcd8VfkEFnmqdRdTqak2",
       "date": 1748212043675,
       "content": "halo",
-      "lajkujacy": ["konon"]
+      "lajkujacy": []
     },
     {
       "id": "e87ea7f7-a1cb-4938-a267-d5775bde5181",
@@ -54,7 +54,9 @@
       "author_id": "MlYiduCtRBZZ2Hv3SZrCBhXyUfK2",
       "date": 1748297892371,
       "content": "lubie placki",
-      "lajkujacy": []
+      "lajkujacy": [
+        "8owQ5O59Lcd8VfkEFnmqdRdTqak2"
+      ]
     }
   ]
 }
