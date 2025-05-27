@@ -11,12 +11,12 @@ const postHTML = `<div class="post">
       </div>
   </div>
   <div class="post-content">
-      <p class="post-text">{KONTENT}</p>
+      <p class="post-text">{KONTENT}</br>ID postu: {ID}</p>
   </div>
   <div class="post-actions">
-      <button class="btn-like"><i class="fas fa-thumbs-up"> {LAJKI}</i>
+      <button class="btn-like" id="lajk" postid={ID}><i class="fas fa-thumbs-up"> {LAJKI}</i>
 </button>
-      <button class="btn-save" id="lajk" postid={ID}><i class="fas fa-bookmark"></i></button>
+      <button class="btn-save"><i class="fas fa-bookmark"></i></button>
   </div>
 </div>`
 
@@ -53,7 +53,7 @@ async function dodajPost(post) {
     .replace('{AUTOR}', autor)
     .replace('{DATA}', data)
     .replace('{KONTENT}', kontent)
-    .replace('{ID}', id)
+    .replace('{ID}', wygenerujUUIDPosta())
     .replace('{LAJKI}', post.lajkujacy.length)
   document.getElementById('PostList').insertAdjacentHTML('afterbegin', kod)
 }
@@ -99,6 +99,8 @@ async function wyslijPosta() {
     .catch(error => alert('Błąd:', error))
 }
 
+
+//dodaje lub usuwa zalogowanego użytkownika z listy lajkujących post
 async function polajkuj(post) {
   
     console.log("lajk");
@@ -117,9 +119,9 @@ document.getElementById('postForm').onsubmit = (event) => {
 }
 
 //jak to ogarnac??? 
-document.getElementById('lajk').onsubmit = (event) => {
+document.getElementById('lajk').addeventlistener = (event) => {
   event.preventDefault()
-  polajkuj(postid)
+  polajkuj(postid)  
 }
 
 document.getElementById('postForm').oninput = () => {
