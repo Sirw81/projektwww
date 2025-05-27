@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const profileSection = document.getElementById("profileSection");
   const savedSection = document.getElementById("savedSection");
   const profileAvatar = document.getElementById("profileAvatar");
+  const searchSection = document.getElementById("searchSection");
 
   const userUID = sessionStorage.getItem('userUID');
 
@@ -65,6 +66,7 @@ if (avatar) {
   const homeBtn = document.getElementById('homepage');
   if (homeBtn && homeSection && profileSection && savedSection) {
     homeBtn.addEventListener("click", () => {
+          history.pushState({}, '', location.origin);
       profileSection.style.display = "none";
       savedSection.style.display = "none";
       homeSection.style.display = "block";
@@ -147,27 +149,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// dialog wyszukiwania
-document.getElementById('search').onclick = () => {
-  document.getElementById('search_dialog').show()
-  document.getElementById('search_input').focus()
-}
 
-document.getElementById('search_dialog').onsubmit = (event) => {
-  const search = document.getElementById('search_input').value
-  if (search.length < 1) {
-    event.preventDefault()
-    alert('Wyszukaj coś!')
-  } else {
-    location.href = location.origin + '/results.html?search=' + search
-  }
-}
 
 document.getElementById('closeSearch').onclick = () => {
   document.getElementById('search_dialog').close()
+
+      
 }
 
-const logo = document.getElementById('logo')
-if (logo) logo.onclick = () => {
-  location.href = location.origin
-}

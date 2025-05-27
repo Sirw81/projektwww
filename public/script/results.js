@@ -15,7 +15,7 @@ const postHTML = `<div class="post">
   </div>
   <div class="post-actions">
       <button class="btn-like"><i class="fas fa-thumbs-up"></i></button>
-      <button class="btn-save"><i class="fas fa-bookmark"></button>
+      <button class="btn-save"><i class="fas fa-bookmark"></i></button>
   </div>
 </div>`
 
@@ -61,7 +61,26 @@ async function dodajPost(post) {
     .replace('{AUTOR}', autor)
     .replace('{DATA}', data)
     .replace('{KONTENT}', kontent)
-  document.getElementById('PostList').insertAdjacentHTML('afterbegin', kod)
+  document.getElementById('searchPostList').insertAdjacentHTML('afterbegin', kod)
 }
 
-zaladujPosty()
+// dialog wyszukiwania
+document.getElementById('search').onclick = () => {
+  document.getElementById('search_dialog').show()
+  document.getElementById('search_input').focus()
+}
+
+document.getElementById('search_dialog').onsubmit = (event) => {
+  const search = document.getElementById('search_input').value
+  if (search.length < 1) {
+    event.preventDefault()
+    alert('Wyszukaj coś!')
+  } else {
+    history.pushState({}, '', '?search=' + encodeURIComponent(search));
+          homeSection.style.display = "none";
+      savedSection.style.display = "none"
+      profileSection.style.display = "none";
+      searchSection.style.display = "block";
+      zaladujPosty();
+  }
+}

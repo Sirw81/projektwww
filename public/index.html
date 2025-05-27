@@ -12,6 +12,7 @@
     <link rel="icon" href="img/logo_darkmode.svg" type="image/png">
     <script type="module" src="script/main.js"></script>
     <script type="module" src="script/saved_posts.js"></script>
+    <script type="module" src="script/results.js"></script>
     <script type="module" src="script/glowna.js"></script>
     <script type="module" src="script/theme.js"></script>
 </head>
@@ -60,11 +61,16 @@
                     <button id="uploadAvatarBtn">Wyślij avatar</button>
 
                 </div>
-                        <div id="savedSection"style="display: none;">
-                        <h2>Zapisane posty</h3>
+                <div id="savedSection" style="display: none;">
+                    <h2>Zapisane posty</h3>
                         <div id="SavedPostList">
                         </div>
-                        </div>
+                </div>
+                <div id="searchSection">
+                    <h2 id="resultsHeader"></h2>
+                    <div id="searchPostList">
+                    </div>
+                </div>
 
             </section>
             <aside class="right">
