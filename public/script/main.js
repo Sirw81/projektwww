@@ -7,14 +7,15 @@ import { getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-fires
 //jak niezalogowany przenosi na login
 const pagelink = window.location.pathname
 if (!pagelink.endsWith('login.html') && !pagelink.endsWith('register.html')) {
-  if (localStorage.getItem('isLoggedIn') !== 'true') {
+  if (sessionStorage.getItem('isLoggedIn') !== 'true') {
     window.location.href = 'login.html';
   }
   //przycisk wyloguj
   const logoutBtn = document.getElementById('logoutButton');
   if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
-      localStorage.removeItem('isLoggedIn');
+      sessionStorage.removeItem('isLoggedIn');
+      sessionStorage.removeItem('userUID');
       window.location.href = 'login.html';
     });
   }
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const savedSection = document.getElementById("savedSection");
   const profileAvatar = document.getElementById("profileAvatar");
 
-  const userUID = localStorage.getItem('userUID');
+  const userUID = sessionStorage.getItem('userUID');
 
   if (userUID) {
     const docRef = doc(db, "users", userUID);

@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('userUID', user.uid);
+      sessionStorage.setItem('isLoggedIn', 'true');
+      sessionStorage.setItem('userUID', user.uid);
 
       window.location.href = 'index.html';
     } catch (error) {

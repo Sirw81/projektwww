@@ -54,7 +54,7 @@ async function dodajPost(post) {
   let data = new Date(post.date).toLocaleDateString()
   let kontent = post.content
   let lajkujacy = []
-  const userUID = localStorage.getItem('userUID')
+  const userUID = sessionStorage.getItem('userUID')
   let blue = ""
   
     if (!post.lajkujacy.includes(userUID)){
@@ -101,7 +101,7 @@ async function wyslijPosta() {
   const uuid = await wygenerujUUIDPosta()
   const post = {
     id: uuid,
-    author_id: localStorage.getItem('userUID'),
+    author_id: sessionStorage.getItem('userUID'),
     date: Date.now(),
     content: content,
     lajkujacy: []
@@ -118,7 +118,7 @@ async function wyslijPosta() {
 
 async function polajkuj(button) {
 
-  const userUID = localStorage.getItem('userUID')
+  const userUID = sessionStorage.getItem('userUID')
   const postID = button.id
 
   const posts = await fetch('http://localhost:3000/posts')
