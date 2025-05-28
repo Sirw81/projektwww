@@ -81,6 +81,7 @@ document.getElementById('search_dialog').onsubmit = (event) => {
       savedSection.style.display = "none"
       profileSection.style.display = "none";
       searchSection.style.display = "block";
+      document.getElementById('searchPostList').innerHTML = '';
       zaladujPosty();
   }
 }

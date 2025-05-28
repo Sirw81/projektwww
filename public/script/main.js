@@ -41,9 +41,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       profileAvatar.src = userData.photoURL || "img/placeholder.png";
       const avatar = document.getElementById('avatar');
-if (avatar) {
-  avatar.src = userData.photoURL || "img/placeholder.png";
-}
+      if (avatar) {
+        avatar.src = userData.photoURL || "img/placeholder.png";
+      }
       profileSection.querySelector('p:nth-of-type(1)').textContent = `Nazwa: ${userData.username || 'Brak nazwy'}`;
       profileSection.querySelector('p:nth-of-type(2)').textContent = `Email: ${userData.email || 'Brak email'}`;
 
@@ -60,25 +60,28 @@ if (avatar) {
       homeSection.style.display = "none";
       savedSection.style.display = "none"
       profileSection.style.display = "block";
+      searchSection.style.display = "none";
     });
   }
 
   const homeBtn = document.getElementById('homepage');
   if (homeBtn && homeSection && profileSection && savedSection) {
     homeBtn.addEventListener("click", () => {
-          history.pushState({}, '', location.origin);
+      history.pushState({}, '', location.origin);
       profileSection.style.display = "none";
       savedSection.style.display = "none";
       homeSection.style.display = "block";
+      searchSection.style.display = "none";
     });
   }
   const savedBtn = document.getElementById("saved");
-  if(savedBtn && homeSection && profileSection && savedSection){
-savedBtn.addEventListener("click",() =>{
-            profileSection.style.display = "none";
+  if (savedBtn && homeSection && profileSection && savedSection) {
+    savedBtn.addEventListener("click", () => {
+      profileSection.style.display = "none";
       savedSection.style.display = "block";
       homeSection.style.display = "none";
-})
+      searchSection.style.display = "none";
+    })
   }
 });
 
@@ -154,6 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById('closeSearch').onclick = () => {
   document.getElementById('search_dialog').close()
 
-      
+
 }
 
