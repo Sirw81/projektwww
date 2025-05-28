@@ -30,6 +30,25 @@ document.addEventListener("DOMContentLoaded", async () => {
   const profileAvatar = document.getElementById("profileAvatar");
   const searchSection = document.getElementById("searchSection");
 
+  const sectionInStorage = sessionStorage.getItem('section')
+  homeSection.style.display = "none";
+  savedSection.style.display = "none"
+  profileSection.style.display = "none";
+  searchSection.style.display = "none";
+  switch (sectionInStorage) {
+    case 'home':
+      homeSection.style.display = "block";
+      break;
+    case 'saved':
+      savedSection.style.display = "block";
+      break;
+    case 'profile':
+      profileSection.style.display = "block";
+      break;
+    default:
+      break;
+  }
+
   const userUID = sessionStorage.getItem('userUID');
 
   if (userUID) {
@@ -47,7 +66,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       profileSection.querySelector('p:nth-of-type(1)').textContent = `Nazwa: ${userData.username || 'Brak nazwy'}`;
       profileSection.querySelector('p:nth-of-type(2)').textContent = `Email: ${userData.email || 'Brak email'}`;
 
-      profileSection.style.display = "none";
+      if (sectionInStorage != 'profile') profileSection.style.display = "none";
+
     } else {
       profileSection.style.display = "none";
     }
@@ -61,6 +81,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       savedSection.style.display = "none"
       profileSection.style.display = "block";
       searchSection.style.display = "none";
+
+      sessionStorage.setItem('section', 'profile')
     });
   }
 
@@ -72,6 +94,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       savedSection.style.display = "none";
       homeSection.style.display = "block";
       searchSection.style.display = "none";
+
+      sessionStorage.setItem('section', 'home')
     });
   }
   const savedBtn = document.getElementById("saved");
@@ -81,6 +105,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       savedSection.style.display = "block";
       homeSection.style.display = "none";
       searchSection.style.display = "none";
+
+      sessionStorage.setItem('section', 'saved')
     })
   }
 });

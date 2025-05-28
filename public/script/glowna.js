@@ -5,7 +5,7 @@ import { getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-fires
 const postHTML = `<div class="post">
   <div class="post-header">
       <img src="{AWATAR}" alt="Avatar" class="post-avatar">
-      <div class="post-userinfo">
+      <div class="post-userinfo" id="{UID}">
           <span class="post-author">{AUTOR}</span>
           <span class="post-date">{DATA}</span>
       </div>
@@ -16,12 +16,9 @@ const postHTML = `<div class="post">
   <div class="post-actions">
       <button class="btn-like{B}" type="button" id="{ID}" aria-label="Like"><i class="fas fa-thumbs-up"> {LAJKI}</i>
 </button>
-      <button class="btn-save"><i class="fas fa-bookmark"aria-label="Save"></i></button>
+      <button class="btn-save"><i class="fas fa-{EMOJI}"aria-label="{ARIA}"></i></button>
   </div>
 </div>`
-
-// <p class="post-text">{KONTENT}</p>
-// <img src="img/placeholder.png" alt="Post image" class="post-image">
 
 function wyczyscPosty() {
   const postWall = document.getElementById('PostList')
@@ -47,7 +44,7 @@ async function zaladujPosty(sort, order) {
       break;
   }
 
-  await Promise.all(posts.map(post => dodajPost(post)));
+  await Promise.all(posts.map(post => dodajPost(post, 'PostList')));
 
   const lajki = document.querySelectorAll('.btn-like, .btn-like-blue')
   if (!lajki) return
@@ -56,6 +53,7 @@ async function zaladujPosty(sort, order) {
       polajkuj(lajk)
     }
   })
+  zapisywaniePostow()
 }
 
 async function getAuthor(authorId) {
@@ -68,7 +66,7 @@ async function getAuthor(authorId) {
   return {username: 'Nieznany użytkownik', avatar: 'img/placeholder.png'}
 }
 
-async function dodajPost(post) {
+async function dodajPost(post, klasa) {
   let authorObject = await getAuthor(post.author_id)
   let avatar = authorObject.avatar
   let autor = authorObject.username
@@ -91,13 +89,16 @@ async function dodajPost(post) {
     .replace('{DATA}', data)
     .replace('{KONTENT}', kontent)
     .replace('{ID}', post.id)
+    .replace('{UID}', post.author_id)
     .replace('{LAJKI}', post.lajkujacy.length)
     .replace('{B}', blue)
+    .replace('{EMOJI}', (klasa == 'PostList') ? 'bookmark' : 'trash')
+    .replace('{ARIA}', (klasa == 'PostList') ? 'Save' : 'Unsave')
     .replace('img|', '</br><img class="post-image" src="')
     .replace('|img', '"></img>')
 
-    
-  document.getElementById('PostList').insertAdjacentHTML('afterbegin', kod)
+
+  document.getElementById(klasa).insertAdjacentHTML('afterbegin', kod)
 }
 
 zaladujPosty('Relewacja', 1)
@@ -172,7 +173,7 @@ async function polajkuj(button) {
 
 async function dialogObrazka() {
   document.getElementById('img_dialog').show()
-  document.getElementById('img_input').focus() 
+  document.getElementById('img_input').focus()
 }
 
 document.getElementById('postForm').onsubmit = (event) => {
@@ -226,3 +227,60 @@ if (sortingWay) sortingWay.onclick = (event) => {
     zaladujPosty(getSort(), 1)
   }
 }
+
+function zapisywaniePostow() {
+  const saveBtn = document.getElementsByClassName('btn-save')
+  if (!saveBtn) return
+  Array.from(saveBtn).forEach(btn => {
+
+    btn.onclick = (event) => {
+      const post = event.target.closest('.post')
+      const button = event.target.closest('.btn-save')
+      const postId = Array.from(post.querySelectorAll('.btn-like, .btn-like-blue'))[0].id
+
+      const savedPosts = localStorage.getItem('saved_posts')
+      if (!savedPosts) {
+        alert('Dodano do zapisanych!')
+        location.reload()
+        localStorage.setItem('saved_posts', JSON.stringify([postId]))
+      }
+      else {
+        const newTable = JSON.parse(savedPosts)
+        if (newTable.includes(postId)) {
+          newTable.splice(newTable.indexOf(postId), 1)
+          localStorage.setItem('saved_posts', JSON.stringify(newTable))
+          button.innerHTML = '<i class="fas fa-bookmark" aria-label="Save"></i>'
+
+          if (post.parentNode.id == 'SavedPostList') {
+            post.remove()
+          }
+
+          alert('Usunięto z zapisanych!')
+          location.reload()
+        } else {
+          newTable.push(postId)
+          localStorage.setItem('saved_posts', JSON.stringify(newTable))
+          button.innerHTML = '<i class="fas fa-trash" aria-label="Unsave"></i>'
+          alert('Dodano do zapisanych!')
+          location.reload()
+        }
+      }
+
+    }
+
+  })
+}
+
+function zaladujZapisanePosty() {
+  const storage = localStorage.getItem('saved_posts')
+  if (!storage) return
+  const savedPosts = JSON.parse(storage)
+  savedPosts.forEach(async (postId) => {
+    const posts = await fetch('http://localhost:3000/posts')
+      .then(resp => resp.json())
+    const thatPost = posts.find(it => it.id = postId)
+    dodajPost(thatPost, 'SavedPostList')
+  })
+}
+
+zaladujZapisanePosty()
