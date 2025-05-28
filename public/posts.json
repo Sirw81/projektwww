@@ -6,7 +6,8 @@
       "date": 1748212043675,
       "content": "halo",
       "lajkujacy": [
-        "MlYiduCtRBZZ2Hv3SZrCBhXyUfK2"
+        "MlYiduCtRBZZ2Hv3SZrCBhXyUfK2",
+        "MJWNWrpczcQETZF3mg9ywpGte8m2"
       ]
     },
     {
@@ -140,9 +141,7 @@
       "author_id": "99vKbFi37sRbAl0fsjuk7gl2riP2",
       "date": 1748358011979,
       "content": "test",
-      "lajkujacy": [
-        "MJWNWrpczcQETZF3mg9ywpGte8m2"
-      ]
+      "lajkujacy": []
     },
     {
       "id": "fcc070c7-e09a-4896-b8cc-5e2ae075acc1",
@@ -194,6 +193,20 @@
       "author_id": "MJWNWrpczcQETZF3mg9ywpGte8m2",
       "date": 1748449783529,
       "content": "test obrazka img|https://www.tysol.pl/imgcache/750x530/c//zdj/zdjecie/41207.jpg|img",
+      "lajkujacy": []
+    },
+    {
+      "id": "5958e565-9325-437a-9fea-83d85b1b7f5f",
+      "author_id": "MJWNWrpczcQETZF3mg9ywpGte8m2",
+      "date": 1748451883517,
+      "content": "test",
+      "lajkujacy": []
+    },
+    {
+      "id": "3cefb17c-8cce-4ae8-a548-fa3e678139d0",
+      "author_id": "MJWNWrpczcQETZF3mg9ywpGte8m2",
+      "date": 1748451897628,
+      "content": "arbuz",
       "lajkujacy": []
     }
   ]
