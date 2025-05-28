@@ -72,6 +72,8 @@ async function dodajPost(post) {
     .replace('{ID}', post.id)
     .replace('{LAJKI}', post.lajkujacy.length)
     .replace('{B}', blue)
+    .replace('[P:', '</br><img class="post-image" src="')
+    .replace(':P]', '"></img>')
   document.getElementById('PostList').insertAdjacentHTML('afterbegin', kod)
 }
 

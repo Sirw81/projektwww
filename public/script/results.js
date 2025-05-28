@@ -40,7 +40,7 @@ async function zaladujPosty() {
   posts.forEach(post => {
     if (post.content.includes(query)) {
         index++
-        dodajPost(post)
+        dodajPost(post) 
     }
   });
   if (index == 0) {
