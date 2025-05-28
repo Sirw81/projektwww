@@ -47,6 +47,7 @@
                             <textarea id="contentInput" name="content" placeholder="Dodaj post"></textarea>
                             <p id="wordCount">0/301</p>
                         </div>
+                        <button id="addImage" type="addimg">Dodaj obrazek</button>
                         <button id="sharePost" type="submit">Opublikuj</button>
                     </form>
                     <div id="PostList">
@@ -88,6 +89,16 @@
             <form method="dialog">
                 <input id="search_input"></input>
                 <button>Wyszukaj</button>
+            </form>
+        </dialog>
+
+        <dialog id="img_dialog">
+            <button type="button" id="closeImg">X</button>
+            <h2>Dodaj obrazek</h2>
+            <p>Wklej link do obrazka:</p>
+            <form method="dialog">
+                <input id="img_input"></input>
+                <button>Wstaw</button>
             </form>
         </dialog>
     </main>
