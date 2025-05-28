@@ -24,7 +24,8 @@
       "date": 1748216366837,
       "content": "maciak ekhem",
       "lajkujacy": [
-        "MlYiduCtRBZZ2Hv3SZrCBhXyUfK2"
+        "MlYiduCtRBZZ2Hv3SZrCBhXyUfK2",
+        "MJWNWrpczcQETZF3mg9ywpGte8m2"
       ]
     },
     {
@@ -144,7 +145,9 @@
       "author_id": "99vKbFi37sRbAl0fsjuk7gl2riP2",
       "date": 1748358111001,
       "content": "dd",
-      "lajkujacy": []
+      "lajkujacy": [
+        "MJWNWrpczcQETZF3mg9ywpGte8m2"
+      ]
     },
     {
       "id": "2a82d30f-5194-4380-9fe9-ec94c7df5da9",
@@ -158,6 +161,24 @@
       "author_id": "99vKbFi37sRbAl0fsjuk7gl2riP2",
       "date": 1748365322798,
       "content": "test33",
+      "lajkujacy": [
+        "MJWNWrpczcQETZF3mg9ywpGte8m2"
+      ]
+    },
+    {
+      "id": "2a6dda2d-a89f-4d34-8168-439b1bfc158b",
+      "author_id": "MJWNWrpczcQETZF3mg9ywpGte8m2",
+      "date": 1748435532319,
+      "content": "nie moge oddychac",
+      "lajkujacy": [
+        "MJWNWrpczcQETZF3mg9ywpGte8m2"
+      ]
+    },
+    {
+      "id": "feb5bf00-0d76-4c75-a2ef-f910415323f7",
+      "author_id": "MJWNWrpczcQETZF3mg9ywpGte8m2",
+      "date": 1748435592094,
+      "content": "nvm, moge oddychac",
       "lajkujacy": []
     }
   ]
