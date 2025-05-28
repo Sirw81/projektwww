@@ -155,8 +155,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.getElementById('closeSearch').onclick = () => {
+  let input = document.getElementById('search_input')
+  input.value = "";
   document.getElementById('search_dialog').close()
-
 
 }
 
+document.getElementById('closeImg').onclick = () => {
+  let input = document.getElementById('img_input')
+  input.value = "";
+  document.getElementById('img_dialog').close()
+
+}
