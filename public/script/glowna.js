@@ -23,9 +23,30 @@ const postHTML = `<div class="post">
 // <p class="post-text">{KONTENT}</p>
 // <img src="img/placeholder.png" alt="Post image" class="post-image">
 
-async function zaladujPosty() {
-  const posts = await fetch('http://localhost:3000/posts')
+function wyczyscPosty() {
+  const postWall = document.getElementById('PostList')
+  if (!postWall) return
+  postWall.innerHTML = ''
+}
+
+async function zaladujPosty(sort, order) {
+  let posts = await fetch('http://localhost:3000/posts')
     .then(resp => resp.json())
+
+  switch (sort) {
+    case 'Relewacja':
+      posts = posts.sort((a, b) => (a.date / a.lajkujacy.length - b.date / b.lajkujacy.length) * order)
+      break;
+    case 'Lajki':
+      posts = posts.sort((a, b) => (a.lajkujacy.length - b.lajkujacy.length) * order)
+      break;
+    case 'Data':
+      posts = posts.sort((a, b) => (a.date - b.date) * order)
+      break;
+    default:
+      break;
+  }
+
   await Promise.all(posts.map(post => dodajPost(post)));
 
   const lajki = document.querySelectorAll('.btn-like, .btn-like-blue')
@@ -56,7 +77,7 @@ async function dodajPost(post) {
   let lajkujacy = []
   const userUID = sessionStorage.getItem('userUID')
   let blue = ""
-  
+
     if (!post.lajkujacy.includes(userUID)){
       blue=""
     }
@@ -79,7 +100,7 @@ async function dodajPost(post) {
   document.getElementById('PostList').insertAdjacentHTML('afterbegin', kod)
 }
 
-zaladujPosty()
+zaladujPosty('Relewacja', 1)
 
 async function wygenerujUUIDPosta() {
   const posts = await fetch('http://localhost:3000/posts')
@@ -173,72 +194,39 @@ document.getElementById('postForm').oninput = () => {
   document.getElementById('wordCount').textContent = count + '/301'
 }
 
-// const autorzyny = ['Lech Wałęsa', 'Andrzej Duda', 'Jarosław Kaczyński', 'Donald Tusk', 'Radosław Sikorski', 'Sławomir Mentzen', 'Maciej Maciak']
-// function dodajPost(post) {
-//   const autorzyna = autorzyny[Math.floor(Math.random() * autorzyny.length)]
-//   const data = new Date(Date.now() - Math.round((Math.random() * 100000000000))).toLocaleString('fr-FR')
-//   const kod = kodHTML.replace('{AUTOR}', autorzyna).replace('{DATA}', data).replace('{KONTENT}', post.body)
-//   document.getElementById('PostList').insertAdjacentHTML('afterbegin', kod)
-// }
+function getOrder() {
+  const sortingWay = document.getElementById('sortingWay')
+  if (!sortingWay) return 1
+  return (sortingWay.innerHTML.includes('arrow-down')) ? -1 : 1
+}
 
-// async function wygenerujPosty() {
-//   const ids = new Set()
-//   const posts = []
-//   while (ids.size < 10) {
-//     const random = Math.round(Math.random() * 99 + 1)
-//     ids.add(random)
-//   }
+function getSort() {
+  const sorter = document.getElementById('sorting')
+  if (!sorter) return 'Rewelacja'
+  return sorter.value
+}
 
-//   const promises = Array.from(ids).map(id =>
-//     fetch("https://jsonplaceholder.typicode.com/posts/" + id)
-//       .then(response => response.json())
-//   )
-//   const results = await Promise.all(promises)
-//   posts.push(...results)
-//   posts.forEach(post => {
-//     dodajPost(post)
-//   });
+const sorter = document.getElementById('sorting')
+if (sorter) sorter.onchange = (event) => {
+  const value = event.target.value
+  wyczyscPosty()
+  zaladujPosty(value, getOrder())
+}
 
-//   // po dodaniu losowych postów, wsparcie dla zapisanych postów
-//   const saveButtons = document.getElementsByClassName('btn-save')
-//   Array.from(saveButtons).forEach(element => {
-//     element.onclick = (event) => {
-//       const post = event.srcElement.parentNode.parentNode
-//       const author = post.querySelector('.post-author').textContent
-//       const date = post.querySelector('.post-date').textContent
-//       const text = post.querySelector('.post-text').textContent
-//       const avatar = post.querySelector('.post-avatar').src
+const sortingWay = document.getElementById('sortingWay')
+if (sortingWay) sortingWay.onclick = (event) => {
+  let target = event.target
+  if (!target.outerHTML.includes('</button>') && target.outerHTML.includes('</i>')) {
+    target = target.parentNode
+  }
+  const isDescending = target.innerHTML.includes('arrow-down')
 
-
-
-//       const jsonObject = [author, date, text]
-//       const savedPosts = JSON.parse(localStorage.getItem('saved_posts'))
-//       let zawiera = false
-//       if (savedPosts) {
-//         const strCurrPost = JSON.stringify(jsonObject)
-
-//         // sprawdz czy stringified savedposts zawiera stringified posta
-//         Array.from(savedPosts).forEach(savedPost => {
-//           if (JSON.stringify(savedPost) == strCurrPost) {
-//             zawiera = true
-//           }
-//         })
-
-//         // nie zawiera, dodaj do listy
-
-//         if (!zawiera) {
-//           const newStorage = savedPosts
-//           newStorage.push(jsonObject)
-//           localStorage.setItem('saved_posts', JSON.stringify(newStorage))
-//         }
-
-//       // zrob nowa liste
-//       } else {
-//         localStorage.setItem('saved_posts', JSON.stringify([jsonObject]))
-//       }
-
-//     }
-//   });
-// }
-
-//wygenerujPosty()
+  wyczyscPosty()
+  if (isDescending) {
+    target.innerHTML = '<i class="fas fa-arrow-up"></i>'
+    zaladujPosty(getSort(), -1)
+  } else {
+    target.innerHTML = '<i class="fas fa-arrow-down"></i>'
+    zaladujPosty(getSort(), 1)
+  }
+}

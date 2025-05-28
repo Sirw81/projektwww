@@ -185,7 +185,7 @@ body.light-mode .mid {
 }
 
 
-.post-form button {
+.post-form button, select, #sortSection button {
   padding: 10px 20px;
   border: none;
   background-color: rgb(38, 0, 255);
@@ -697,6 +697,19 @@ body.light-mode #resultsHeader {
 
 #closeSearch:hover {
     background-color: rgba(78, 78, 78, 0.25) !important;
+}
+
+#sortSection {
+  padding: 20px;
+  display: flow-root;
+}
+
+select, #sortingWay {
+  float: right;
+}
+
+#sortingWay {
+  margin-left: 10px;
 }
 
 #closeImg {
