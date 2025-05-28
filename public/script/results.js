@@ -130,4 +130,7 @@ document.getElementById('search_dialog').onsubmit = (event) => {
       document.getElementById('searchPostList').innerHTML = '';
       zaladujPosty();
   }
+  
+  let input = document.getElementById('search_input')
+  input.value = "";
 }

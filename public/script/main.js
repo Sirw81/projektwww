@@ -177,12 +177,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
+document.getElementById('img_dialog').onsubmit = (event) => {
+  let contentinput = document.getElementById('contentInput')
+  
+  let img = document.getElementById('img_input')
+  if (img.length < 1) {
+    event.preventDefault()
+    alert('Wpisz coś!')
+  } else {
+    contentinput.value = contentinput.value+"\nimg\|"+img.value+"\|img\n"
+  }
+  
+  let imginput = document.getElementById('img_input')
+  input.value = "";
+}
 
 
 document.getElementById('closeSearch').onclick = () => {
+  let input = document.getElementById('search_input')
+  input.value = "";
   document.getElementById('search_dialog').close()
-
 
 }
 
+document.getElementById('closeImg').onclick = () => {
+  let input = document.getElementById('img_input')
+  input.value = "";
+  document.getElementById('img_dialog').close()
+
+}

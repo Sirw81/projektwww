@@ -179,11 +179,15 @@ async function dialogObrazka() {
 document.getElementById('postForm').onsubmit = (event) => {
   event.preventDefault()
   wyslijPosta()
+  let input = document.getElementById('contentInput')
+  input.value = "";
 }
 
 document.getElementById('addImage').onclick = (event) => {
   event.preventDefault()
   dialogObrazka()
+  let input = document.getElementById('img_input')
+  input.value = "";
 }
 
 document.getElementById('postForm').oninput = () => {
