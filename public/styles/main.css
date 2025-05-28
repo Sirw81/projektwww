@@ -147,9 +147,8 @@ body.light-mode .mid {
 
   .sidebar-btn:hover {
       background-color: rgba(29, 161, 242, 0.466);
-      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
       animation-name: fade;
-      animation-duration: 1s;
+      animation-duration: 0.3s;
 
   }
   #savedSection h2 {
@@ -346,6 +345,10 @@ body.light-mode .mid {
 .btn-like:hover, .btn-save:hover, .btn-unsave:hover, .btn-like-blue:hover {
   background-color: #6868688e;
 }
+
+body.light-mode .btn-like:hover, body.light-mode .btn-save:hover, body.light-mode .btn-unsave:hover, body.light-mode .btn-like-blue:hover {
+  background-color: #afafaf8e;
+}
 /* === Avatar Upload === */
 #avatarUpload {
   display: block;
@@ -443,12 +446,11 @@ body.light-mode .sidebar-btn {
 
 @keyframes fade2 {
   from {background-color: transparent; box-shadow: none;}
-  to {background-color: rgba(29, 161, 242, 0.466); box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);}
+  to {background-color: rgba(29, 161, 242, 0.466);}
 }
 
 body.light-mode .sidebar-btn:hover {
   background-color: rgba(29, 161, 242, 0.466);
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
   animation-name: fade2;
   animation-duration: 0.3s;
 }
@@ -674,6 +676,14 @@ body.light-mode #search_input {
 
 #resultsHeader {
     color: white;
+    margin: auto;
+    margin-top: 40px;
+    width: 80%;
+    text-align: center;
+}
+
+body.light-mode #resultsHeader {
+    color: rgb(31, 31, 31);
     margin: auto;
     margin-top: 40px;
     width: 80%;
