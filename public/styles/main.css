@@ -300,9 +300,8 @@ body.light-mode .mid {
 
 .post-image {
   width: 100%;
-  max-height: 400px;
+  max-height: 500px;
   object-fit: contain;
-  border-radius: 12px;
   display: block;
 }
 
@@ -578,7 +577,7 @@ body.light-mode #uploadAvatarBtn:hover {
   to {width: 400px;}
 }
 
-body #search_dialog {
+body #search_dialog, #img_dialog {
   position: absolute;
   top: calc(50% - 150px);
   left: calc(50% - 200px);
@@ -598,7 +597,7 @@ body #search_dialog {
   animation-duration: 0.5s;
 }
 
-body.light-mode #search_dialog {
+body.light-mode #search_dialog, body.light-mode #img_dialog {
   position: absolute;
   top: calc(50% - 150px);
   left: calc(50% - 200px);
@@ -618,7 +617,7 @@ body.light-mode #search_dialog {
   animation-duration: 0.5s;
 }
 
-#search_dialog button {
+#search_dialog button, #img_dialog button {
   padding: 10px 20px;
   border: none;
   background-color: rgb(0, 123, 255);
@@ -628,15 +627,15 @@ body.light-mode #search_dialog {
   cursor: pointer;
 }
 
-#search_dialog p, #search_dialog form {
+#search_dialog p, #search_dialog form, #img_dialog p, #img_dialog form {
   text-align: center;
 }
 
-#search_dialog form {
+#search_dialog form, #img_dialog form {
   margin-top: 20px;
 }
 
-#search_input {
+#search_input, #img_input {
 
     width: 100%;
     max-width: 300px;
@@ -650,7 +649,7 @@ body.light-mode #search_dialog {
     text-align: left;
 }
 
-body.light-mode #search_input {
+body.light-mode #search_input, body.light-mode #img_input {
 
   width: 100%;
     max-width: 300px;
@@ -711,4 +710,14 @@ select, #sortingWay {
 
 #sortingWay {
   margin-left: 10px;
+}
+
+#closeImg {
+    background-color: rgba(0,0,0,0.25) !important;
+    display:block;
+    position:inherit;
+}
+
+#closeImg:hover {
+    background-color: rgba(78, 78, 78, 0.25) !important;
 }

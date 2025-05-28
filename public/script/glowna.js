@@ -93,8 +93,10 @@ async function dodajPost(post) {
     .replace('{ID}', post.id)
     .replace('{LAJKI}', post.lajkujacy.length)
     .replace('{B}', blue)
-    .replace('[P:', '</br><img class="post-image" src="')
-    .replace(':P]', '"></img>')
+    .replace('img|', '</br><img class="post-image" src="')
+    .replace('|img', '"></img>')
+
+    
   document.getElementById('PostList').insertAdjacentHTML('afterbegin', kod)
 }
 
@@ -168,9 +170,19 @@ async function polajkuj(button) {
     .catch(error => alert('Błąd: ' + error.message))
 }
 
+async function dialogObrazka() {
+  document.getElementById('img_dialog').show()
+  document.getElementById('img_input').focus() 
+}
+
 document.getElementById('postForm').onsubmit = (event) => {
   event.preventDefault()
   wyslijPosta()
+}
+
+document.getElementById('addImage').onclick = (event) => {
+  event.preventDefault()
+  dialogObrazka()
 }
 
 document.getElementById('postForm').oninput = () => {
