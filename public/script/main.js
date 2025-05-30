@@ -217,3 +217,7 @@ if (closeImg) closeImg.onclick = () => {
   document.getElementById('img_dialog').close()
 
 }
+
+window.ondragstart = () => {
+  return false
+}
