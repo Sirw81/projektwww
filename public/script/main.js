@@ -4,6 +4,9 @@ import { updateProfile } from "https://www.gstatic.com/firebasejs/9.22.2/firebas
 import { doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 import { getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
+const currSection = sessionStorage.getItem('section')
+if (!currSection) sessionStorage.setItem('section', 'home')
+
 //jak niezalogowany przenosi na login
 const pagelink = window.location.pathname
 if (!pagelink.endsWith('login.html') && !pagelink.endsWith('register.html')) {
@@ -179,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.getElementById('img_dialog').onsubmit = (event) => {
   let contentinput = document.getElementById('contentInput')
-  
+
   let img = document.getElementById('img_input')
   if (img.length < 1) {
     event.preventDefault()
@@ -187,7 +190,7 @@ document.getElementById('img_dialog').onsubmit = (event) => {
   } else {
     contentinput.value = contentinput.value+"\nimg\|"+img.value+"\|img\n"
   }
-  
+
   let imginput = document.getElementById('img_input')
   input.value = "";
 }

@@ -32,7 +32,7 @@ async function zaladujPosty(sort, order) {
 
   switch (sort) {
     case 'Relewacja':
-      posts = posts.sort((a, b) => (a.date / a.lajkujacy.length - b.date / b.lajkujacy.length) * order)
+      posts = posts.sort((a, b) => (b.date / b.lajkujacy.length - a.date / a.lajkujacy.length) * order)
       break;
     case 'Lajki':
       posts = posts.sort((a, b) => (a.lajkujacy.length - b.lajkujacy.length) * order)
@@ -44,7 +44,15 @@ async function zaladujPosty(sort, order) {
       break;
   }
 
-  await Promise.all(posts.map(post => dodajPost(post, 'PostList')));
+  const autorzy = {}
+  await Promise.all(posts.map(async post => {
+    autorzy[post.author_id] = await getAuthor(post.author_id)
+  }))
+
+  for (const post of posts) {
+    await dodajPost(post, 'PostList', autorzy[post.author_id])
+  }
+
 
   const lajki = document.querySelectorAll('.btn-like, .btn-like-blue')
   if (!lajki) return
@@ -66,10 +74,9 @@ async function getAuthor(authorId) {
   return {username: 'Nieznany użytkownik', avatar: 'img/placeholder.png'}
 }
 
-async function dodajPost(post, klasa) {
-  let authorObject = await getAuthor(post.author_id)
-  let avatar = authorObject.avatar
-  let autor = authorObject.username
+async function dodajPost(post, klasa, autorObj) {
+  let avatar = autorObj.avatar
+  let autor = autorObj.username
   let data = new Date(post.date).toLocaleDateString()
   let kontent = post.content
   let lajkujacy = []
@@ -100,8 +107,9 @@ async function dodajPost(post, klasa) {
 
   document.getElementById(klasa).insertAdjacentHTML('afterbegin', kod)
 }
-
-zaladujPosty('Relewacja', 1)
+const sort = sessionStorage.getItem('sort') ?? 'Rewelacja'
+const sortWay = sessionStorage.getItem('sortWay') ?? -1
+zaladujPosty(sort, sortWay)
 
 async function wygenerujUUIDPosta() {
   const posts = await fetch('http://localhost:3000/posts')
@@ -195,40 +203,30 @@ document.getElementById('postForm').oninput = () => {
   document.getElementById('wordCount').textContent = count + '/301'
 }
 
-function getOrder() {
-  const sortingWay = document.getElementById('sortingWay')
-  if (!sortingWay) return 1
-  return (sortingWay.innerHTML.includes('arrow-down')) ? -1 : 1
-}
-
-function getSort() {
-  const sorter = document.getElementById('sorting')
-  if (!sorter) return 'Rewelacja'
-  return sorter.value
-}
-
 const sorter = document.getElementById('sorting')
+if (sort) sorter.value = sort
 if (sorter) sorter.onchange = (event) => {
   const value = event.target.value
+  sessionStorage.setItem('sort', value)
   wyczyscPosty()
-  zaladujPosty(value, getOrder())
+  const order = sessionStorage.getItem('sortWay') ?? 1
+  zaladujPosty(value, order)
 }
 
 const sortingWay = document.getElementById('sortingWay')
+if (sortWay == -1) sortingWay.innerHTML = '<i class="fas fa-arrow-up"></i>'
 if (sortingWay) sortingWay.onclick = (event) => {
-  let target = event.target
-  if (!target.outerHTML.includes('</button>') && target.outerHTML.includes('</i>')) {
-    target = target.parentNode
-  }
-  const isDescending = target.innerHTML.includes('arrow-down')
-
+  let target = event.target.closest('button')
+  const isAscending = target.innerHTML.includes('arrow-up')
+  sessionStorage.setItem('sortWay', isAscending ? 1 : -1)
   wyczyscPosty()
-  if (isDescending) {
-    target.innerHTML = '<i class="fas fa-arrow-up"></i>'
-    zaladujPosty(getSort(), -1)
-  } else {
+  const sortType = sessionStorage.getItem('sort') ?? 'Rewelacja'
+  if (isAscending) {
     target.innerHTML = '<i class="fas fa-arrow-down"></i>'
-    zaladujPosty(getSort(), 1)
+    zaladujPosty(sortType, 1)
+  } else {
+    target.innerHTML = '<i class="fas fa-arrow-up"></i>'
+    zaladujPosty(sortType, -1)
   }
 }
 
@@ -283,7 +281,7 @@ function zaladujZapisanePosty() {
     const posts = await fetch('http://localhost:3000/posts')
       .then(resp => resp.json())
     const thatPost = posts.find(it => it.id = postId)
-    dodajPost(thatPost, 'SavedPostList')
+    dodajPost(thatPost, 'SavedPostList', getAuthor(thatPost.author_id))
   })
 }
 
