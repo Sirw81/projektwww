@@ -149,7 +149,10 @@ async function wyslijPosta() {
     .then(response => response.json())
     .then(() => {
       alert('Dodano post!')
-      location.reload()
+      wyczyscPosty()
+      const order = sessionStorage.getItem('sortWay') ?? 1
+      const sort = sessionStorage.getItem('sort') ?? 'Relewacja'
+      zaladujPosty(sort, order)
     })
     .catch(error => alert('Błąd:', error))
 }
