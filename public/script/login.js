@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault()
     const showing = document.getElementById('password').type == 'text'
     if (showing) {
-      showPassword.style.background = 'url("/img/showpassword.png") bottom/cover';
+      showPassword.innerHTML = '<i class="fa-solid fa-eye"></i>'
       document.getElementById('password').type = 'password'
     }
     else {
-      showPassword.style.background = 'url("/img/hidepassword.png") bottom/cover';
+      showPassword.innerHTML = '<i class="fa-solid fa-eye-slash"></i>'
       document.getElementById('password').type = 'text'
     }
   }

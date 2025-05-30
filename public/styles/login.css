@@ -211,13 +211,13 @@ body.light-mode #theme-toggle:hover {
     width: 20px;
     height: 20px;
     position: relative;
-    bottom: 60px;
+    bottom: 55px;
     left: 130px;
-    background: url('/img/showpassword.png') bottom/cover;
-    filter: invert();
+    padding: 0;
+    background: rgba(0, 0, 0, 0)
 }
 
 body.light-mode #showPassword,
 body.light-mode #showConfirmPassword {
-  filter: none;
+  filter: invert();
 }

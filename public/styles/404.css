@@ -26,3 +26,8 @@ body.light-mode h4 {
   background-color: #666;
   color: #f0f0f0;
 }
+
+#header {
+  font-size: 100px;
+  margin-bottom: 30px;
+}

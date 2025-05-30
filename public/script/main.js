@@ -31,6 +31,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   const searchSection = document.getElementById("searchSection");
 
   const sectionInStorage = sessionStorage.getItem('section')
+
+  if (!homeSection) return
+  if (!profileSection) return
+  if (!savedSection) return
+  if (!profileSection) return
+  if (!searchSection) return
+
   homeSection.style.display = "none";
   savedSection.style.display = "none"
   profileSection.style.display = "none";
@@ -176,10 +183,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-document.getElementById('img_dialog').onsubmit = (event) => {
+const dialog = document.getElementById('img_dialog')
+if (dialog) imgdialog.onsubmit = (event) => {
   let contentinput = document.getElementById('contentInput')
-  
+
   let img = document.getElementById('img_input')
   if (img.length < 1) {
     event.preventDefault()
@@ -187,20 +194,21 @@ document.getElementById('img_dialog').onsubmit = (event) => {
   } else {
     contentinput.value = contentinput.value+"\nimg\|"+img.value+"\|img\n"
   }
-  
+
   let imginput = document.getElementById('img_input')
   input.value = "";
 }
 
-
-document.getElementById('closeSearch').onclick = () => {
+const closeSearch = document.getElementById('closeSearch')
+if (closeSearch) closeSearch.onclick = () => {
   let input = document.getElementById('search_input')
   input.value = "";
   document.getElementById('search_dialog').close()
 
 }
 
-document.getElementById('closeImg').onclick = () => {
+const closeImg = document.getElementById('closeImg')
+if (closeImg) closeImg.onclick = () => {
   let input = document.getElementById('img_input')
   input.value = "";
   document.getElementById('img_dialog').close()
