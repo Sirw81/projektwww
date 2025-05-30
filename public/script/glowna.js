@@ -90,17 +90,21 @@ async function dodajPost(post, klasa, autorObj) {
     {
       blue="-blue"
     }
+
+  const isSaved = localStorage.getItem('saved_posts')?.includes(post.id) ?? false
+
   const kod = postHTML
     .replace('{AWATAR}', avatar)
     .replace('{AUTOR}', autor)
     .replace('{DATA}', data)
-    .replace('{KONTENT}', kontent)
     .replace('{ID}', post.id)
     .replace('{UID}', post.author_id)
     .replace('{LAJKI}', post.lajkujacy.length)
     .replace('{B}', blue)
     .replace('{EMOJI}', (klasa == 'PostList') ? 'bookmark' : 'trash')
+    .replace('bookmark', (isSaved) ? 'trash' : 'bookmark')
     .replace('{ARIA}', (klasa == 'PostList') ? 'Save' : 'Unsave')
+    .replace('{KONTENT}', kontent)
     .replace('img|', '</br><img class="post-image" src="')
     .replace('|img', '"></img>')
 
@@ -273,16 +277,28 @@ function zapisywaniePostow() {
   })
 }
 
-function zaladujZapisanePosty() {
+async function zaladujZapisanePosty() {
   const storage = localStorage.getItem('saved_posts')
   if (!storage) return
   const savedPosts = JSON.parse(storage)
-  savedPosts.forEach(async (postId) => {
-    const posts = await fetch('http://localhost:3000/posts')
-      .then(resp => resp.json())
-    const thatPost = posts.find(it => it.id = postId)
-    dodajPost(thatPost, 'SavedPostList', getAuthor(thatPost.author_id))
+
+  const posts = await fetch('http://localhost:3000/posts')
+    .then(resp => resp.json())
+  for (const saved of savedPosts) {
+    for (const post of posts) {
+      if (saved != post.id) continue
+      dodajPost(post, 'SavedPostList', await getAuthor(post.author_id))
+    }
+  }
+
+  const lajki = document.querySelectorAll('.btn-like, .btn-like-blue')
+  if (!lajki) return
+  Array.from(lajki).forEach(lajk => {
+    lajk.onclick = () => {
+      polajkuj(lajk)
+    }
   })
+  zapisywaniePostow()
 }
 
 zaladujZapisanePosty()
