@@ -218,6 +218,6 @@ if (closeImg) closeImg.onclick = () => {
 
 }
 
-window.ondragstart = () => {
-  return false
+window.ondragstart = (event) => {
+  if (event.target.tagName == 'IMG') return false
 }
