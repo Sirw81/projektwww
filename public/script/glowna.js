@@ -111,7 +111,7 @@ async function dodajPost(post, klasa, autorObj) {
 
   document.getElementById(klasa).insertAdjacentHTML('afterbegin', kod)
 }
-const sort = sessionStorage.getItem('sort') ?? 'Rewelacja'
+const sort = sessionStorage.getItem('sort') ?? 'Relewacja'
 const sortWay = sessionStorage.getItem('sortWay') ?? -1
 zaladujPosty(sort, sortWay)
 
@@ -208,7 +208,8 @@ document.getElementById('postForm').oninput = () => {
 }
 
 const sorter = document.getElementById('sorting')
-if (sort) sorter.value = sort
+
+sorter.value = sort
 if (sorter) sorter.onchange = (event) => {
   const value = event.target.value
   sessionStorage.setItem('sort', value)
@@ -224,7 +225,7 @@ if (sortingWay) sortingWay.onclick = (event) => {
   const isAscending = target.innerHTML.includes('arrow-up')
   sessionStorage.setItem('sortWay', isAscending ? 1 : -1)
   wyczyscPosty()
-  const sortType = sessionStorage.getItem('sort') ?? 'Rewelacja'
+  const sortType = sessionStorage.getItem('sort') ?? 'Relewacja'
   if (isAscending) {
     target.innerHTML = '<i class="fas fa-arrow-down"></i>'
     zaladujPosty(sortType, 1)

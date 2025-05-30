@@ -186,8 +186,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-const dialog = document.getElementById('img_dialog')
-if (dialog) imgdialog.onsubmit = (event) => {
+const imgdialog = document.getElementById('img_dialog')
+if (imgdialog) imgdialog.onsubmit = (event) => {
   let contentinput = document.getElementById('contentInput')
 
   let img = document.getElementById('img_input')
