@@ -1,34 +1,24 @@
-//zmiana dark/light
 document.addEventListener("DOMContentLoaded", function () {
-  const toggleBtn = document.getElementById("theme-toggle");
   const body = document.body;
+  const toggleBtn = document.getElementById("theme-toggle");
   const logo = document.getElementById("logo");
+  if (!logo || !toggleBtn) return
 
   const savedTheme = localStorage.getItem("theme");
   const isLight = savedTheme === "light";
 
   if (isLight) {
     body.classList.add("light-mode");
-    if (logo) logo.src = "img/logo_lightmode.svg";
+    logo.src = "img/logo_lightmode.svg";
   } else {
-    if (logo) logo.src = "img/logo_darkmode.svg";
+    logo.src = "img/logo_darkmode.svg";
   }
 
-  if (toggleBtn) {
-    toggleBtn.textContent = isLight ? "MOTYW: JASNY" : "MOTYW: CIEMNY";
-
-    toggleBtn.addEventListener("click", () => {
-      const isNowLight = body.classList.toggle("light-mode");
-
-      if (logo) {
-        logo.src = isNowLight ? "img/logo_lightmode.svg" : "img/logo_darkmode.svg";
-      }
-
-      toggleBtn.textContent = isNowLight
-        ? "MOTYW: JASNY"
-        : "MOTYW: CIEMNY";
-
-      localStorage.setItem("theme", isNowLight ? "light" : "dark");
-    });
-  }
+  toggleBtn.textContent = "MOTYW: " + (isLight ? "JASNY" : "CIEMNY");
+  toggleBtn.addEventListener("click", () => {
+    const isNowLight = body.classList.toggle("light-mode");
+    logo.src = isNowLight ? "img/logo_lightmode.svg" : "img/logo_darkmode.svg";
+    toggleBtn.textContent = "MOTYW: " + (isNowLight ? "JASNY" : "CIEMNY");
+    localStorage.setItem("theme", isNowLight ? "light" : "dark");
+  });
 });

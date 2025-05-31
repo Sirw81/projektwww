@@ -31,3 +31,8 @@ body.light-mode h4 {
   font-size: 100px;
   margin-bottom: 30px;
 }
+
+img {
+  width: 60px;
+  display: block;
+}

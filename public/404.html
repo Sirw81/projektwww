@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="styles/404.css">
     <link rel="icon" href="img/favicon.png" type="image/png">
     <script type="module" src="script/main.js"></script>
-    <script type="module" src="script/404.js"></script>
     <script type="module" src="script/theme.js"></script>
 </head>
 
 <body>
     <button id="theme-toggle"></button>
     <main>
+        <img id="logo">
         <h1 id="header">404</h1>
         <h4>Nic tutaj nie ma.</h4>
         <button id="returnHomepage">Powrót na stronę główną</button>
@@ -26,6 +26,11 @@
         © 2025 Y. Wszelkie prawa zastrzeżone.
     </footer>
 
+    <script>
+        document.getElementById('returnHomepage').onclick = () => {
+            location.href = location.origin
+        }
+    </script>
 </body>
 
 </html>
