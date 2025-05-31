@@ -162,7 +162,8 @@ body.light-mode .footer {
 }
 
 body.light-mode #theme-toggle {
-  background-color: #ddd;         color: #222;
+  background-color: #ddd;
+  color: #222;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
