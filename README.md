@@ -5,3 +5,5 @@
     - "liveServer.settings.file": "404.html",
     - "liveServer.settings.root": "/public",
 5. uruchom live server
+
+* Dev mode(ominięcie firebase): w pliku login.js ustawić isDevMode na true

@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("loginForm");
   const showPassword = document.getElementById("showPassword");
+  const isDevMode = false //zmienic na true by ominąć firebase email dev@user.com hasłó:dev123
 
   showPassword.onclick = (event) => {
     event.preventDefault()
@@ -24,6 +25,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
+      if (isDevMode) {
+    // DEV login
+    if (email === "dev@user.com" && password === "dev123") {
+      sessionStorage.setItem('isLoggedIn', 'true');
+      sessionStorage.setItem('userUID', 'dev-uid-123');
+      window.location.href = 'index.html';
+    } else {
+      alert("Nieprawidłowe dane (dev mode)");
+    }
+  } else {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
@@ -34,6 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = 'index.html';
     } catch (error) {
       alert("Błąd logowania: " + error.message);
-    }
+    }}
   });
 });

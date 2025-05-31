@@ -71,13 +71,17 @@ try{
 }
 
 async function getAuthor(authorId) {
+  try{
   const userRef = doc(db, 'users', authorId)
   const user = await getDoc(userRef)
   if (user.exists()) {
     const userData = user.data()
     return {username: userData.username, avatar: userData.photoURL}
+  }}catch(error){
+    console.warn('Błąd pobierania autora z Firebase, używam danych domyślnych:', error)
   }
   return {username: 'Nieznany użytkownik', avatar: 'img/placeholder.png'}
+  
 }
 
 async function dodajPost(post, klasa, autorObj) {

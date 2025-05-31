@@ -7,8 +7,7 @@
       "content": "halo",
       "lajkujacy": [
         "MlYiduCtRBZZ2Hv3SZrCBhXyUfK2",
-        "MJWNWrpczcQETZF3mg9ywpGte8m2",
-        "99vKbFi37sRbAl0fsjuk7gl2riP2"
+        "MJWNWrpczcQETZF3mg9ywpGte8m2"
       ]
     },
     {
@@ -220,61 +219,20 @@
       ]
     },
     {
-      "id": "ef18c6cf-9dd6-4990-82b3-49989ad7c853",
-      "author_id": "99vKbFi37sRbAl0fsjuk7gl2riP2",
-      "date": 1748640575485,
+      "id": "2af81fd1-a6bd-4f62-a040-c7ebaa424b7b",
+      "author_id": "dev-uid-123",
+      "date": 1748654393328,
+      "content": "dev",
+      "lajkujacy": [
+        "dev-uid-123"
+      ]
+    },
+    {
+      "id": "6673406a-fd7e-4805-a432-2d88608b2bef",
+      "author_id": "dev-uid-123",
+      "date": 1748654517182,
       "content": "ddd",
       "lajkujacy": []
-    },
-    {
-      "id": "faf552dc-7fd1-41a9-ba7b-2f434ae6c100",
-      "author_id": "99vKbFi37sRbAl0fsjuk7gl2riP2",
-      "date": 1748640752438,
-      "content": "ddd",
-      "lajkujacy": []
-    },
-    {
-      "id": "200b95ab-b32b-4eae-8d27-b089d1402d44",
-      "author_id": "99vKbFi37sRbAl0fsjuk7gl2riP2",
-      "date": 1748641701723,
-      "content": "dddd",
-      "lajkujacy": [
-        "99vKbFi37sRbAl0fsjuk7gl2riP2"
-      ]
-    },
-    {
-      "id": "af105d0d-4d01-4ba0-84c8-ef71eaedcac8",
-      "author_id": "99vKbFi37sRbAl0fsjuk7gl2riP2",
-      "date": 1748644072743,
-      "content": "tes",
-      "lajkujacy": [
-        "99vKbFi37sRbAl0fsjuk7gl2riP2"
-      ]
-    },
-    {
-      "id": "b893",
-      "author_id": "99vKbFi37sRbAl0fsjuk7gl2riP2",
-      "date": 1748645047148,
-      "content": "dddd",
-      "lajkujacy": [
-        "99vKbFi37sRbAl0fsjuk7gl2riP2"
-      ]
-    },
-    {
-      "id": "5de7cce3-b0b9-4143-bc21-ca89f86e043f",
-      "author_id": "99vKbFi37sRbAl0fsjuk7gl2riP2",
-      "date": 1748645437121,
-      "content": "dddddddd",
-      "lajkujacy": []
-    },
-    {
-      "id": "1e853e93-623d-47b9-be6d-c1ef52209af6",
-      "author_id": "99vKbFi37sRbAl0fsjuk7gl2riP2",
-      "date": 1748648299351,
-      "content": "elo\nimg|https://i.redd.it/kgegurof1pe81.gif|img\n",
-      "lajkujacy": [
-        "99vKbFi37sRbAl0fsjuk7gl2riP2"
-      ]
     }
   ]
 }
