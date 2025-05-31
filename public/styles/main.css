@@ -247,6 +247,12 @@ body.light-mode .mid {
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 /*POST*/
+#PostList h2, #searchPostList h2{
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: white;
+    text-align: center;
+}
 .post {
   background-color: rgb(55, 55, 55);
   color: white;
@@ -661,6 +667,12 @@ body.light-mode #search_input, body.light-mode #img_input {
     color: rgb(60, 60, 60);
     font-size: 16px;
     text-align: left;
+}
+body.light-mode #PostList h2, body.light-mode #searchPostList h2, body.light-mode #savedSection h2{
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: black;
+    text-align: center;
 }
 
 #wordCount {

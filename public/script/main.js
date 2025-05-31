@@ -62,7 +62,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const userUID = sessionStorage.getItem('userUID');
 
   if (userUID) {
-    const docRef = doc(db, "users", userUID);
+  const docRef = doc(db, "users", userUID);
+  try {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
@@ -81,9 +82,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
       profileSection.style.display = "none";
     }
-  } else {
-    profileSection.style.display = "none";
+  } catch (error) {
+    console.error("Błąd pobierania dokumentu:", error);
+    alert("Błąd połączenia z firebase lub brak internetu. Spróbuj ponownie później.");
   }
+} else {
+  profileSection.style.display = "none";
+}
+
 
   if (profileBtn && homeSection && profileSection && savedSection) {
     profileBtn.addEventListener("click", () => {
@@ -159,6 +165,10 @@ document.addEventListener("DOMContentLoaded", () => {
       alert('Musisz być zalogowany, aby zmienić avatar.');
       return;
     }
+      if (!navigator.onLine) {
+    alert('Brak połączenia z internetem. Sprawdź swoje połączenie i spróbuj ponownie.');
+    return;
+  }
 
     try {
       const storageRef = ref(storage, `avatars/${user.uid}/${file.name}`);

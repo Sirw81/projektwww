@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">
@@ -50,11 +50,11 @@
                         <button id="sharePost" type="submit">Opublikuj</button>
                     </form>
                     <div id="sortSection">
-                        <button type="button" id="sortingWay"><i class="fas fa-arrow-down"></i></button>
-                        <select id="sorting">
-                            <option value="Relewacja">Relewacja</option>
-                            <option value="Lajki">Lajki</option>
-                            <option value="Data">Data</option>
+                        <button type="button" id="sortingWay" aria-label="kierunek sortowania"><i class="fas fa-arrow-down"></i></button>
+                        <select id="sorting" aria-label="sorting">
+                            <option value="Relewacja" aria-label="relewacja">Relewacja</option>
+                            <option value="Lajki" aria-label="lajki">Lajki</option>
+                            <option value="Data" aria-label="data">Data</option>
                         </select>
                     </div>
                     <div id="PostList">
@@ -63,14 +63,14 @@
                 <div id="profileSection" style="display:none">
                     <h2>Profil</h2>
                     <img src="img/placeholder.png" alt="avatar" id="profileAvatar">
-                    <p>Nazwa:test</p>
-                    <p>email test</p>
+                    <p>Nazwa: n/a</p>
+                    <p>Email: n/a</p>
                     <input type="file" id="avatarUpload" accept="image/*" />
                     <button id="uploadAvatarBtn">Wyślij avatar</button>
 
                 </div>
                 <div id="savedSection" style="display: none;">
-                    <h2>Zapisane posty</h3>
+                    <h2>Zapisane posty</h2>
                         <div id="SavedPostList">
                         </div>
                 </div>

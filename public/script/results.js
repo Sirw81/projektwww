@@ -2,7 +2,7 @@ import { db } from './firebase-config.js';
 import { doc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 import { getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
-const postHTML = `<div class="post">
+const postHTML = `<article class="post">
   <div class="post-header">
       <img src="{AWATAR}" alt="Avatar" class="post-avatar">
       <div class="post-userinfo">
@@ -18,14 +18,15 @@ const postHTML = `<div class="post">
 </button>
       <button class="btn-save"><i class="fas fa-bookmark"aria-label="Save"></i></button>
   </div>
-</div>`
+</article>`
 
 // <p class="post-text">{KONTENT}</p>
 // <img src="img/placeholder.png" alt="Post image" class="post-image">
 
 async function zaladujPosty() {
-  const posts = await fetch('http://localhost:3000/posts')
-    .then(resp => resp.json())
+  try{const response = await fetch('http://localhost:3000/posts')
+  if(!response) throw new Error("Błąd połączenia z serwerem")
+  const posts = await response.json()
 
   const lajki = document.querySelectorAll('.btn-like, .btn-like-blue')
   if (!lajki) return
@@ -48,6 +49,10 @@ async function zaladujPosty() {
   } else {
     document.getElementById('resultsHeader').textContent = `Znalezione wyniki (${index}):`
   }
+}catch(error){
+console.error("Błąd",error.message)
+document.getElementById("searchPostList").innerHTML='<h2>Błąd połączenia z serwerem.</h2>'
+}
 }
 
 async function polajkuj(button) {

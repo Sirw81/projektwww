@@ -2,7 +2,7 @@ import { db } from './firebase-config.js';
 import { doc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 import { getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
-const postHTML = `<div class="post">
+const postHTML = `<article class="post">
   <div class="post-header">
       <img src="{AWATAR}" alt="Avatar" class="post-avatar">
       <div class="post-userinfo" id="{UID}">
@@ -18,7 +18,7 @@ const postHTML = `<div class="post">
 </button>
       <button class="btn-save"><i class="fas fa-{EMOJI}"aria-label="{ARIA}"></i></button>
   </div>
-</div>`
+</article>`
 
 function wyczyscPosty() {
   const postWall = document.getElementById('PostList')
@@ -27,8 +27,10 @@ function wyczyscPosty() {
 }
 
 async function zaladujPosty(sort, order) {
-  let posts = await fetch('http://localhost:3000/posts')
-    .then(resp => resp.json())
+try{
+  const response = await fetch('http://localhost:3000/posts')
+  if(!response.ok) throw new Error("Błąd serwera przy ładowaniu postów")
+  let posts = await response.json()
 
   switch (sort) {
     case 'Relewacja':
@@ -62,6 +64,10 @@ async function zaladujPosty(sort, order) {
     }
   })
   zapisywaniePostow()
+}catch(error){
+    console.error('Błąd ładowania postów:')
+    document.getElementById('PostList').innerHTML = '<h2>Błąd połączenia z serwerem.</h2>'
+  }
 }
 
 async function getAuthor(authorId) {
@@ -105,7 +111,7 @@ async function dodajPost(post, klasa, autorObj) {
     .replace('bookmark', (isSaved) ? 'trash' : 'bookmark')
     .replace('{ARIA}', (klasa == 'PostList') ? 'Save' : 'Unsave')
     .replace('{KONTENT}', kontent)
-    .replace('img|', '</br><img class="post-image" src="')
+    .replace('img|', '</br><img class="post-image" alt="post-image" src="')
     .replace('|img', '"></img>')
 
 
@@ -116,8 +122,9 @@ const sortWay = sessionStorage.getItem('sortWay') ?? -1
 zaladujPosty(sort, sortWay)
 
 async function wygenerujUUIDPosta() {
-  const posts = await fetch('http://localhost:3000/posts')
-    .then(resp => resp.json())
+try{  
+  const response = await fetch('http://localhost:3000/posts')
+  const posts = await response.json()
   const uuidPostow = new Set()
   posts.forEach(post => {
     uuidPostow.add(post.id)
@@ -129,6 +136,9 @@ async function wygenerujUUIDPosta() {
     uuidPostow.add(uuid)
   }
   return uuid
+}catch(error){
+    console.log("błąd generowania UUID posta")
+  }
 }
 
 async function wyslijPosta() {
@@ -145,16 +155,22 @@ async function wyslijPosta() {
     lajkujacy: []
   }
 
-  fetch('http://localhost:3000/posts', {method: 'POST', body: JSON.stringify(post)})
-    .then(response => response.json())
-    .then(() => {
+try{  const response = await fetch('http://localhost:3000/posts', {method: 'POST', body: JSON.stringify(post)})
+  if (!response.ok) {
+    throw new Error
+  }
+
+  await response.json()
       alert('Dodano post!')
       wyczyscPosty()
       const order = sessionStorage.getItem('sortWay') ?? 1
       const sort = sessionStorage.getItem('sort') ?? 'Relewacja'
       zaladujPosty(sort, order)
-    })
-    .catch(error => alert('Błąd:', error))
+    }
+    catch(error){
+  console.error('Wystąpił błąd przy wysyłaniu posta:', error)
+  alert('Nie udało się wysłać posta. Sprawdź połączenie z serwerem lub spróbuj ponownie później.')
+    }
 }
 
 async function polajkuj(button) {
@@ -286,8 +302,9 @@ async function zaladujZapisanePosty() {
   if (!storage) return
   const savedPosts = JSON.parse(storage)
 
-  const posts = await fetch('http://localhost:3000/posts')
-    .then(resp => resp.json())
+  try{const response = await fetch('http://localhost:3000/posts')
+  if(!response) throw new Error('Błąd połączenia z serwerem.')
+  const posts= await response.json()
   for (const saved of savedPosts) {
     for (const post of posts) {
       if (saved != post.id) continue
@@ -303,6 +320,11 @@ async function zaladujZapisanePosty() {
     }
   })
   zapisywaniePostow()
+}catch(error){
+    console.error('Wystąpił błąd przy wyświetlaniu zapisanych postów', error)
+    document.getElementById('SavedPostList').innerHTML = '<h2>Błąd połączenia z serwerem.</h2>'
+}
 }
 
 zaladujZapisanePosty()
+
