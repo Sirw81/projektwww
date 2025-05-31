@@ -7,7 +7,8 @@
       "content": "halo",
       "lajkujacy": [
         "MlYiduCtRBZZ2Hv3SZrCBhXyUfK2",
-        "MJWNWrpczcQETZF3mg9ywpGte8m2"
+        "MJWNWrpczcQETZF3mg9ywpGte8m2",
+        "8owQ5O59Lcd8VfkEFnmqdRdTqak2"
       ]
     },
     {
@@ -26,7 +27,8 @@
       "content": "maciak ekhem",
       "lajkujacy": [
         "MlYiduCtRBZZ2Hv3SZrCBhXyUfK2",
-        "MJWNWrpczcQETZF3mg9ywpGte8m2"
+        "MJWNWrpczcQETZF3mg9ywpGte8m2",
+        "8owQ5O59Lcd8VfkEFnmqdRdTqak2"
       ]
     },
     {
@@ -66,10 +68,7 @@
       "author_id": "MlYiduCtRBZZ2Hv3SZrCBhXyUfK2",
       "date": 1748297892371,
       "content": "lubie placki",
-      "lajkujacy": [
-        "8owQ5O59Lcd8VfkEFnmqdRdTqak2",
-        "99vKbFi37sRbAl0fsjuk7gl2riP2"
-      ]
+      "lajkujacy": []
     },
     {
       "id": "b00bdee2-99ac-4539-a5d5-e767a9dfca0b",
@@ -167,7 +166,8 @@
       "date": 1748365322798,
       "content": "test33",
       "lajkujacy": [
-        "MJWNWrpczcQETZF3mg9ywpGte8m2"
+        "MJWNWrpczcQETZF3mg9ywpGte8m2",
+        "8owQ5O59Lcd8VfkEFnmqdRdTqak2"
       ]
     },
     {
@@ -185,7 +185,8 @@
       "date": 1748435592094,
       "content": "nvm, moge oddychac",
       "lajkujacy": [
-        "MJWNWrpczcQETZF3mg9ywpGte8m2"
+        "MJWNWrpczcQETZF3mg9ywpGte8m2",
+        "8owQ5O59Lcd8VfkEFnmqdRdTqak2"
       ]
     },
     {
@@ -193,7 +194,9 @@
       "author_id": "MJWNWrpczcQETZF3mg9ywpGte8m2",
       "date": 1748449783529,
       "content": "test obrazka img|https://www.tysol.pl/imgcache/750x530/c//zdj/zdjecie/41207.jpg|img",
-      "lajkujacy": []
+      "lajkujacy": [
+        "8owQ5O59Lcd8VfkEFnmqdRdTqak2"
+      ]
     },
     {
       "id": "5958e565-9325-437a-9fea-83d85b1b7f5f",
