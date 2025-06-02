@@ -12,6 +12,7 @@
     <link rel="icon" href="img/logo_darkmode.svg" type="image/png">
     <script type="module" src="script/glowna.js"></script>
     <script type="module" src="script/theme.js"></script>
+    <script type="module" src="script/posty.js"></script>
 </head>
 
 <body>
@@ -56,6 +57,25 @@
                         </select>
                     </div>
                     <div id="PostList">
+
+                        <article class="post" style="visibility: hidden;">
+                            <div class="post-header">
+                                <img src="{AWATAR}" alt="Avatar" class="post-avatar">
+                                <div class="post-userinfo" id="{UID}">
+                                    <span class="post-author">{AUTOR}</span>
+                                    <span class="post-date">{DATA}</span>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <p class="post-text">{KONTENT}</p>
+                            </div>
+                            <div class="post-actions">
+                                <button class="btn-like{B}" type="button" id="{ID}" aria-label="Like"><i class="fas fa-thumbs-up"> {LAJKI}</i>
+                            </button>
+                                <button class="btn-save"><i class="fas fa-{EMOJI}"aria-label="{ARIA}"></i></button>
+                            </div>
+                        </article>
+
                     </div>
                 </div>
                 <div id="profileSection" style="display:none">
