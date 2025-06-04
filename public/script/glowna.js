@@ -2,7 +2,7 @@ import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.
 import { auth, storage, db } from './firebase-config.js';
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js";
 import { updateProfile } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-import { wyczyscPosty, zaladujPosty } from "./posty.js";
+//import { //wyczyscposty, //wyczyscpostosty } from "./posty.js";
 
 const homeSection = document.getElementById("homeSection");
 const profileSection = document.getElementById("profileSection");
@@ -15,16 +15,16 @@ const sortWay = sessionStorage.getItem('sortWay') ?? -1
 
 if (location.search) {
   toggleSection('search')
-  zaladujPosty(sort, sortWay, location.search.replace('?search=', ''), 'searchPostList')
+  //wyczyscpostosty(sort, sortWay, location.search.replace('?search=', ''), 'searchPostList')
 }
 
 sorter.value = sort
 if (sorter) sorter.onchange = (event) => {
   const value = event.target.value
   sessionStorage.setItem('sort', value)
-  wyczyscPosty('PostList')
+  //wyczyscposty('PostList')
   const order = sessionStorage.getItem('sortWay') ?? 1
-  zaladujPosty(value, order)
+  //wyczyscpostosty(value, order)
 }
 
 const sortingWay = document.getElementById('sortingWay')
@@ -33,14 +33,14 @@ if (sortingWay) sortingWay.onclick = (event) => {
   let target = event.target.closest('button')
   const isAscending = target.innerHTML.includes('arrow-up')
   sessionStorage.setItem('sortWay', isAscending ? 1 : -1)
-  wyczyscPosty('PostList')
+  //wyczyscposty('PostList')
   const sortType = sessionStorage.getItem('sort') ?? 'Relewacja'
   if (isAscending) {
     target.innerHTML = '<i class="fas fa-arrow-down"></i>'
-    zaladujPosty(sortType, 1)
+    //wyczyscpostosty(sortType, 1)
   } else {
     target.innerHTML = '<i class="fas fa-arrow-up"></i>'
-    zaladujPosty(sortType, -1)
+    //wyczyscpostosty(sortType, -1)
   }
 }
 
@@ -48,25 +48,6 @@ if (sortingWay) sortingWay.onclick = (event) => {
 document.getElementById('search').onclick = () => {
   document.getElementById('search_dialog').show()
   document.getElementById('search_input').focus()
-}
-
-document.getElementById('search_dialog').onsubmit = (event) => {
-  const search = document.getElementById('search_input').value
-  if (search.length < 1) {
-    event.preventDefault()
-    alert('Wyszukaj coś!')
-  } else {
-    history.pushState({}, '', '?search=' + encodeURIComponent(search));
-    toggleSection('search')
-    document.getElementById('searchPostList').innerHTML = '';
-
-    const sort = sessionStorage.getItem('sort') ?? 'Relewacja'
-    const sortWay = sessionStorage.getItem('sortWay') ?? 1
-    zaladujPosty(sort, sortWay, search, 'searchPostList');
-  }
-
-  let input = document.getElementById('search_input')
-  input.value = "";
 }
 
 const closeSearch = document.getElementById('closeSearch')
@@ -97,7 +78,7 @@ if (!pagelink.endsWith('login.html') && !pagelink.endsWith('register.html')) {
 const currSection = sessionStorage.getItem('section')
 if (!currSection) sessionStorage.setItem('section', 'home')
 
-function toggleSection(section) {
+export function toggleSection(section) {
   if (profileSection) profileSection.style.display = (section == 'profile') ? "block" : "none";
   if (savedSection) savedSection.style.display = (section == 'saved') ? "block" : "none";
   if (homeSection) homeSection.style.display = (section == 'home') ? "block" : "none";
@@ -139,15 +120,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   const savedBtn = document.getElementById("saved");
   const homeBtn = document.getElementById('homepage');
   profileBtn.addEventListener("click", () => {
-    location.search = ''
     toggleSection('profile')
   })
   homeBtn.addEventListener("click", () => {
-    location.search = ''
     toggleSection('home')
   })
   savedBtn.addEventListener("click", () => {
-    location.search = ''
     toggleSection('saved')
   })
 
