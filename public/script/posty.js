@@ -4,16 +4,6 @@ import { db } from "./firebase-config.js";
 const postTemplate = document.querySelector('.post').outerHTML
 document.querySelector('.post').remove()
 
-// naprawienie błędu z lajkowaniem wyszukanych postów
-document.addEventListener('DOMContentLoaded', () => {
-  if (!sessionStorage.getItem('just_liked')) return
-  sessionStorage.removeItem('just_liked')
-  const sort = sessionStorage.getItem('sort') ?? 'Relewacja'
-  const sortWay = sessionStorage.getItem('sortWay') ?? -1
-  const query = location.search.replace('?search=', '')
-  zaladujPosty(sort, sortWay, query, 'searchPostList')
-})
-
 export function wyczyscPosty(sekcja) {
   const postWall = document.getElementById(sekcja)
   if (postWall) postWall.innerHTML = ''

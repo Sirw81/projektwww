@@ -4,10 +4,20 @@ import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/fireba
 import { updateProfile } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 import { wyczyscPosty, zaladujPosty } from "./posty.js";
 
-const sorter = document.getElementById('sorting')
+const homeSection = document.getElementById("homeSection");
+const profileSection = document.getElementById("profileSection");
+const savedSection = document.getElementById("savedSection");
+const searchSection = document.getElementById("searchSection");
 
+const sorter = document.getElementById('sorting')
 const sort = sessionStorage.getItem('sort') ?? 'Relewacja'
 const sortWay = sessionStorage.getItem('sortWay') ?? -1
+
+if (location.search) {
+  toggleSection('search')
+  zaladujPosty(sort, sortWay, location.search.replace('?search=', ''), 'searchPostList')
+}
+
 sorter.value = sort
 if (sorter) sorter.onchange = (event) => {
   const value = event.target.value
@@ -87,11 +97,6 @@ if (!pagelink.endsWith('login.html') && !pagelink.endsWith('register.html')) {
 const currSection = sessionStorage.getItem('section')
 if (!currSection) sessionStorage.setItem('section', 'home')
 
-const homeSection = document.getElementById("homeSection");
-const profileSection = document.getElementById("profileSection");
-const savedSection = document.getElementById("savedSection");
-const searchSection = document.getElementById("searchSection");
-
 function toggleSection(section) {
   if (profileSection) profileSection.style.display = (section == 'profile') ? "block" : "none";
   if (savedSection) savedSection.style.display = (section == 'saved') ? "block" : "none";
@@ -133,9 +138,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   // przyciski menu głównego
   const savedBtn = document.getElementById("saved");
   const homeBtn = document.getElementById('homepage');
-  profileBtn.addEventListener("click", () => toggleSection('profile'))
-  homeBtn.addEventListener("click", () => toggleSection('home'))
-  savedBtn.addEventListener("click", () => toggleSection('saved'))
+  profileBtn.addEventListener("click", () => {
+    location.search = ''
+    toggleSection('profile')
+  })
+  homeBtn.addEventListener("click", () => {
+    location.search = ''
+    toggleSection('home')
+  })
+  savedBtn.addEventListener("click", () => {
+    location.search = ''
+    toggleSection('saved')
+  })
 
 });
 
