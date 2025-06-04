@@ -117,7 +117,9 @@
       "author_id": "99vKbFi37sRbAl0fsjuk7gl2riP2",
       "date": 1748357576999,
       "content": "dddd",
-      "lajkujacy": []
+      "lajkujacy": [
+        "8owQ5O59Lcd8VfkEFnmqdRdTqak2"
+      ]
     },
     {
       "id": "faba6cc3-943d-4ae2-b29e-65609663fc17",
@@ -133,14 +135,18 @@
       "author_id": "99vKbFi37sRbAl0fsjuk7gl2riP2",
       "date": 1748357810049,
       "content": "sss",
-      "lajkujacy": []
+      "lajkujacy": [
+        "8owQ5O59Lcd8VfkEFnmqdRdTqak2"
+      ]
     },
     {
       "id": "5d0ec92e-d548-485d-b038-15de52f7a2be",
       "author_id": "99vKbFi37sRbAl0fsjuk7gl2riP2",
       "date": 1748358011979,
       "content": "test",
-      "lajkujacy": []
+      "lajkujacy": [
+        "8owQ5O59Lcd8VfkEFnmqdRdTqak2"
+      ]
     },
     {
       "id": "fcc070c7-e09a-4896-b8cc-5e2ae075acc1",
@@ -203,14 +209,18 @@
       "author_id": "MJWNWrpczcQETZF3mg9ywpGte8m2",
       "date": 1748451883517,
       "content": "test",
-      "lajkujacy": []
+      "lajkujacy": [
+        "8owQ5O59Lcd8VfkEFnmqdRdTqak2"
+      ]
     },
     {
       "id": "3cefb17c-8cce-4ae8-a548-fa3e678139d0",
       "author_id": "MJWNWrpczcQETZF3mg9ywpGte8m2",
       "date": 1748451897628,
       "content": "arbuz",
-      "lajkujacy": []
+      "lajkujacy": [
+        "8owQ5O59Lcd8VfkEFnmqdRdTqak2"
+      ]
     },
     {
       "id": "d62dbd5c-7160-413e-84e6-d5dea9b2cb78",
@@ -218,7 +228,8 @@
       "date": 1748452602804,
       "content": "\nimg|https://media.tenor.com/aTjaz-WmxNMAAAAM/maciej-maciak.gif|img\n",
       "lajkujacy": [
-        "MJWNWrpczcQETZF3mg9ywpGte8m2"
+        "MJWNWrpczcQETZF3mg9ywpGte8m2",
+        "8owQ5O59Lcd8VfkEFnmqdRdTqak2"
       ]
     },
     {
@@ -235,6 +246,22 @@
       "author_id": "dev-uid-123",
       "date": 1748654517182,
       "content": "ddd",
+      "lajkujacy": [
+        "8owQ5O59Lcd8VfkEFnmqdRdTqak2"
+      ]
+    },
+    {
+      "id": "7abf1e56-c5e8-467a-869f-cd4e882e826a",
+      "author_id": "8owQ5O59Lcd8VfkEFnmqdRdTqak2",
+      "date": 1749059668943,
+      "content": "\nimg|https://media.tenor.com/WU0GIp1DisQAAAAM/faceapp-burp-lightning-man.gif|img\n",
+      "lajkujacy": []
+    },
+    {
+      "id": "43739202-f09f-4f14-8f6d-14aa8e97a789",
+      "author_id": "8owQ5O59Lcd8VfkEFnmqdRdTqak2",
+      "date": 1749059737626,
+      "content": "img|https://media.tenor.com/U2lvehmm4SIAAAAM/jab%C5%82onowski.gif|img",
       "lajkujacy": []
     }
   ]
