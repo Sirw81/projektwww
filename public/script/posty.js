@@ -22,6 +22,7 @@ if (location.search) {
 // mapowanie autorów oddzielnie od generacji postów, optymalizacja
 async function getAuthors() {
   const posts = await getPosts(post => post)
+  if (!posts) return
   const authors = {}
   await Promise.all(posts.map(async post => {
     authors[post.author_id] = await getAuthor(post.author_id)
@@ -30,8 +31,8 @@ async function getAuthors() {
 }
 
 async function getPosts(predicate = () => true) {
-  const response = await fetch('http://localhost:3000/posts')
-  if (!response.ok) return null
+  const response = await fetch('http://localhost:3000/posts').catch(() => {return null})
+  if (!response) return null
   const posts = await response.json()
   return posts.filter(predicate)
 }
@@ -62,6 +63,12 @@ function sortPosts(posts, sort, sortOrder) {
 export async function loadPosts(predicate, section) {
   if (!authors) authors = await getAuthors()
   let posts = await getPosts(predicate)
+  const header = document.getElementById(section).querySelector('h2')
+  if (!posts && section != 'SearchPostList') {
+    header.textContent = 'Nie mogliśmy załadować postów, spróbuj później.'
+    return
+  }
+  if (header) header.style.display = 'none'
   posts = sortPosts(posts, getSort(), getSortOrder())
   for (const post of posts) await addPost(post, section)
 
