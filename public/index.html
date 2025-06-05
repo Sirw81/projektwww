@@ -42,15 +42,15 @@
                     <form id="postForm" class="post-form">
                         <h3>Dodaj post</h3>
                         <div>
-                            <textarea id="contentInput" name="content" placeholder="Dodaj post"></textarea>
-                            <p id="wordCount">0/301</p>
+                            <textarea id="contentInput" name="content" placeholder="Dodaj post"  aria-label="miejsce wpisania tekstu posta"></textarea>
+                            <p id="wordCount" aria-label="limit liter w poście">0/301</p>
                         </div>
                         <button id="addImage" type="addimg">Dodaj obrazek</button>
                         <button id="sharePost" type="submit">Opublikuj</button>
                     </form>
                     <div id="sortSection">
                         <button type="button" id="sortingWay" aria-label="kierunek sortowania"><i class="fas fa-arrow-down"></i></button>
-                        <select id="sorting" aria-label="sorting">
+                        <select id="sorting" aria-label="sposób sortowania">
                             <option value="Relewacja" aria-label="relewacja">Relewacja</option>
                             <option value="Lajki" aria-label="lajki">Lajki</option>
                             <option value="Data" aria-label="data">Data</option>
@@ -61,7 +61,7 @@
                         <article class="post" style="visibility: hidden;">
                             <div class="post-header">
                                 <img src="{AWATAR}" alt="Avatar" class="post-avatar">
-                                <div class="post-userinfo" id="{UID}">
+                                <div class="post-userinfo">
                                     <span class="post-author">{AUTOR}</span>
                                     <span class="post-date">{DATA}</span>
                                 </div>
@@ -72,7 +72,7 @@
                             <div class="post-actions" id="{ID}">
                                 <button class="btn-like{B}" type="button" aria-label="Like"><i class="fas fa-thumbs-up"> {LAJKI}</i>
                             </button>
-                                <button class="btn-save"><i class="fas fa-{EMOJI}"aria-label="{ARIA}"></i></button>
+                                <button class="btn-save"><i class="fas fa-{EMOJI}" aria-label="Zapisz"></i></button>
                             </div>
                         </article>
 
@@ -83,7 +83,7 @@
                     <img src="img/placeholder.png" alt="avatar" id="profileAvatar">
                     <p>Nazwa: n/a</p>
                     <p>Email: n/a</p>
-                    <input type="file" id="avatarUpload" accept="image/*" />
+                    <input type="file" id="avatarUpload" accept="image/*" aria-label="wyślij nowy awatar"/>
                     <button id="uploadAvatarBtn">Wyślij avatar</button>
 
                 </div>
@@ -102,7 +102,7 @@
             <aside class="right">
                 <div class="ad">
                     <h3>Reklama</h3>
-                    <img src="" alt="ad" id="ad">
+                    <img src="" alt="ad" id="ad" width="1000px" height="800px">
                 </div>
             </aside>
         </div>

@@ -38,7 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
         sessionStorage.setItem('userUID', user.uid);
         window.location.href = 'index.html';
       } catch (error) {
-        alert("Błąd logowania: " + error.message);
+        if (error.message.includes('invalid-login-credentials')) {
+          alert('Podałeś nieprawidłowe dane logowania.')
+        } else {
+          alert('Nie można się zalogować. Błąd serwera: ' + error.message)
+        }
       }
     }
   });

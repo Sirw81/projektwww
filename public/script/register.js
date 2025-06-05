@@ -1,7 +1,7 @@
 import { auth, db } from './firebase-config.js';
 import { createUserWithEmailAndPassword, updateProfile }
 from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js'
-import { doc, setDoc }
+import { doc, getDoc, setDoc }
 from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js'
 import { handleShowPassword } from './auth.js'
 
@@ -50,7 +50,13 @@ document.addEventListener("DOMContentLoaded",() =>{
       alert("Rejestracja zakończona sukcesem!");
       window.location.href = 'login.html';
     } catch(error) {
-      alert("Błąd:" + error.message);
+      if (error.message.includes('invalid-email')) {
+        alert('Podałeś nieprawidłowy email.')
+      } else if (error.message.includes('weak-password')) {
+        alert('Hasło powinno mieć co najmniej 6 znaków.')
+      } else {
+        alert('Nie można się zarejestrować. Błąd serwera: ' + error.message)
+      }
     }
   })
 })

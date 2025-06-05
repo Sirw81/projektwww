@@ -2,7 +2,7 @@ import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.
 import { auth, storage, db } from './firebase-config.js';
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js";
 import { updateProfile } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-//import { //wyczyscposty, //wyczyscpostosty } from "./posty.js";
+import { loadPosts, clearSection, getSort, getSortOrder } from "./posty.js";
 
 const homeSection = document.getElementById("homeSection");
 const profileSection = document.getElementById("profileSection");
@@ -10,37 +10,32 @@ const savedSection = document.getElementById("savedSection");
 const searchSection = document.getElementById("searchSection");
 
 const sorter = document.getElementById('sorting')
-const sort = sessionStorage.getItem('sort') ?? 'Relewacja'
-const sortWay = sessionStorage.getItem('sortWay') ?? -1
-
-if (location.search) {
-  toggleSection('search')
-  //wyczyscpostosty(sort, sortWay, location.search.replace('?search=', ''), 'searchPostList')
-}
+const sort = getSort()
+const sortWay = getSortOrder()
 
 sorter.value = sort
 if (sorter) sorter.onchange = (event) => {
   const value = event.target.value
   sessionStorage.setItem('sort', value)
-  //wyczyscposty('PostList')
-  const order = sessionStorage.getItem('sortWay') ?? 1
-  //wyczyscpostosty(value, order)
+  clearSection('PostList')
+  loadPosts(post => post, 'PostList')
 }
 
 const sortingWay = document.getElementById('sortingWay')
 if (sortWay == -1) sortingWay.innerHTML = '<i class="fas fa-arrow-up"></i>'
 if (sortingWay) sortingWay.onclick = (event) => {
+
   let target = event.target.closest('button')
   const isAscending = target.innerHTML.includes('arrow-up')
-  sessionStorage.setItem('sortWay', isAscending ? 1 : -1)
-  //wyczyscposty('PostList')
-  const sortType = sessionStorage.getItem('sort') ?? 'Relewacja'
+  sessionStorage.setItem('sortOrder', isAscending ? 1 : -1)
+
+  clearSection('PostList')
+  loadPosts(post => post, 'PostList')
+
   if (isAscending) {
     target.innerHTML = '<i class="fas fa-arrow-down"></i>'
-    //wyczyscpostosty(sortType, 1)
   } else {
     target.innerHTML = '<i class="fas fa-arrow-up"></i>'
-    //wyczyscpostosty(sortType, -1)
   }
 }
 
@@ -120,12 +115,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   const savedBtn = document.getElementById("saved");
   const homeBtn = document.getElementById('homepage');
   profileBtn.addEventListener("click", () => {
+    location.search = ''
     toggleSection('profile')
   })
   homeBtn.addEventListener("click", () => {
+    location.search = ''
     toggleSection('home')
   })
   savedBtn.addEventListener("click", () => {
+    location.search = ''
     toggleSection('saved')
   })
 

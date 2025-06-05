@@ -3,18 +3,30 @@ import { db } from "./firebase-config.js";
 import { toggleSection } from "./glowna.js"
 
 const newSavedPosts = localStorage.getItem('saved_posts')
+const localUserUID = sessionStorage.getItem('userUID')
+// inicjalizacja strony
+let authors
 loadPosts(post => newSavedPosts?.includes(post?.id), 'SavedPostList')
 loadPosts(post => post, 'PostList')
 
 const postTemplate = document.querySelector('.post').innerHTML
 document.querySelector('.post').remove()
-const localUserUID = sessionStorage.getItem('userUID')
 
-// szukanie postów
+// linki zawierające ?search, inicjalizacja sekcji wyszukiwania
 if (location.search) {
   clearSection('SearchPostList')
   const query = location.search.replace('?search=', '')
   loadPosts(post => post?.content.includes(query), 'SearchPostList')
+}
+
+// mapowanie autorów oddzielnie od generacji postów, optymalizacja
+async function getAuthors() {
+  const posts = await getPosts(post => post)
+  const authors = {}
+  await Promise.all(posts.map(async post => {
+    authors[post.author_id] = await getAuthor(post.author_id)
+  }))
+  return authors
 }
 
 async function getPosts(predicate = () => true) {
@@ -24,19 +36,20 @@ async function getPosts(predicate = () => true) {
   return posts.filter(predicate)
 }
 
-function getSort() {
+export function getSort() {
   return sessionStorage.getItem('sort') ?? 'Relewacja'
 }
 
 // 1 = rosnąco
-function getSortOrder() {
+export function getSortOrder() {
   return sessionStorage.getItem('sortOrder') ?? 1
 }
 
 function sortPosts(posts, sort, sortOrder) {
+  posts = posts.shuffle() // randomizacja kolejności postów przed sortowaniem
   switch (sort) {
     case 'Relewacja':
-      return posts.sort((a, b) => (a.date * a.lajkujacy.length - b.date * b.lajkujacy.length) * -sortOrder)
+      return posts.sort((a, b) => (a.date * a.lajkujacy.length - b.date * b.lajkujacy.length) * sortOrder)
     case 'Lajki':
       return posts.sort((a, b) => (a.lajkujacy.length - b.lajkujacy.length) * sortOrder)
     case 'Data':
@@ -46,10 +59,17 @@ function sortPosts(posts, sort, sortOrder) {
   }
 }
 
-async function loadPosts(predicate, section) {
+export async function loadPosts(predicate, section) {
+  if (!authors) authors = await getAuthors()
   let posts = await getPosts(predicate)
   posts = sortPosts(posts, getSort(), getSortOrder())
-  posts.map(post => addPost(post, section))
+  for (const post of posts) await addPost(post, section)
+
+  if (section == 'SearchPostList') {
+    const wiadomosc = posts.length == 0 ? `Nie znaleziono wyników.`
+      : `Znalezionych wyników (${posts.length}):`
+    document.getElementById('resultsHeader').textContent = wiadomosc
+  }
 }
 
 async function getAuthor(authorId) {
@@ -66,21 +86,26 @@ async function getAuthor(authorId) {
   }
 }
 
-async function addPost(post, section) {
+async function addPost(post, section, createdNow = false) {
   const container = document.getElementById(section)
-  const author = await getAuthor(post.author_id)
+  const author = authors[post.author_id]
   const isLikeBlue = post.lajkujacy.includes(localUserUID) ? '-blue' : ''
   const savedIcon = localStorage.getItem('saved_posts')?.includes(post.id) ? 'trash' : 'bookmark'
+  document.getElementById('wordCount').textContent = '0/301'
 
   const newPost = document.createElement('article')
   newPost.className = 'post'
+  // toLocateString(undefined) - przeglądarka używa swego języka
+  const data = new Date(post.date).toLocaleString(undefined,
+    {dateStyle: 'short', timeStyle: 'short'}
+  )
   const postContent = postTemplate
     .replace('{AWATAR}', author.avatar)
     .replace('{AUTOR}', author.username)
-    .replace('{DATA}', new Date(post.date).toLocaleDateString())
+    .replace('{DATA}', data)
     .replace('{KONTENT}', post.content)
     .replace('{LAJKI}', post.lajkujacy.length)
-    .replace('img|', '</br><img class="post-image" alt="post-image" src="')
+    .replace('img|', '</br><img class="post-image" alt="Obrazek posta - nie załadował się." src="')
     .replace('|img', '"></img>')
     .replace('{B}', isLikeBlue)
     .replace('{EMOJI}', savedIcon)
@@ -91,13 +116,17 @@ async function addPost(post, section) {
   const saveButton = newPost.querySelector('.btn-save')
   likeButton.onclick = () => likePost(section, post)
   saveButton.onclick = () => savePost(section, post)
-  container.appendChild(newPost)
+
+  // dla nowych postów
+  if (!createdNow) container.appendChild(newPost)
+  else {
+    newPost.classList.add('nowyPost')
+    container.insertAdjacentElement('afterbegin', newPost)
+    setTimeout(() => newPost.classList.remove('nowyPost'), 1000)
+  }
 }
 
 
-// updating: trzeba resetować wszystkie sekcje oprócz obecnie przeglądanej
-// TODO: odśwież stronę, daj lajka na głównej > wszystkie posty są w zapisanych
-// TODO: lajkowanie w zapisanych nie czyści sekcji innych
 function updateLikeButton(section, post) {
   // obecna sekcja
   const postObject = document.getElementById(section).querySelector(`[id='${post.id}']`)
@@ -123,7 +152,6 @@ function updateOtherSections(section) {
   }
 }
 
-// updating: trzeba resetować wszystkie sekcje oprócz obecnie przeglądanej
 function updateSaveButton(section, post) {
   // obecna sekcja
   const postObject = document.getElementById(section).querySelector(`[id='${post.id}']`).parentElement
@@ -135,9 +163,7 @@ function updateSaveButton(section, post) {
   saveButton.querySelector('i').classList.replace(toReplace, isSaved ? 'fa-trash' : 'fa-bookmark')
 
   // usuń post jeśli przeglądasz zapisane
-  if (section == 'SavedPostList') {
-    postObject.remove()
-  }
+  if (section == 'SavedPostList') postObject.remove()
 
   updateOtherSections(section)
 }
@@ -169,12 +195,12 @@ function savePost(section, post) {
   updateSaveButton(section, post)
 }
 
-function clearSection(section) {
+export function clearSection(section) {
   const postWall = document.getElementById(section)
   if (postWall) postWall.innerHTML = ''
 }
 
-// szukanie postów
+// wyszukiwarka postów
 document.getElementById('search_dialog').onsubmit = (event) => {
   const query = document.getElementById('search_input').value
   if (query.length < 1) {
@@ -186,12 +212,11 @@ document.getElementById('search_dialog').onsubmit = (event) => {
     clearSection('SearchPostList')
     loadPosts(post => post?.content.includes(query), 'SearchPostList')
   }
-
   let input = document.getElementById('search_input')
   input.value = "";
 }
 
-// DODAWANIE POSTÓW - OBRAZ
+// dodawanie obrazu do posta
 document.getElementById('addImage').onclick = (event) => {
   event.preventDefault()
   dialogObrazka()
@@ -213,6 +238,7 @@ if (imgdialog) imgdialog.onsubmit = (event) => {
     alert('Wpisz coś!')
   } else {
     contentinput.value = contentinput.value+"\nimg\|"+img.value+"\|img\n"
+    document.getElementById('wordCount').textContent = contentinput.value.length + '/301'
   }
 }
 
@@ -223,7 +249,7 @@ if (closeImg) closeImg.onclick = () => {
   document.getElementById('img_dialog').close()
 }
 
-// DODAWANIE POSTÓW
+// dodawanie postów
 document.getElementById('postForm').onsubmit = (event) => {
   event.preventDefault()
   sendPost()
@@ -255,8 +281,7 @@ async function sendPost() {
     if (!response.ok) throw new Error
 
     await response.json().then(() => {
-      alert('Dodano post!')
-      addPost(post, 'PostList')
+      addPost(post, 'PostList', true)
     })
 
   } catch (error) {
@@ -265,13 +290,19 @@ async function sendPost() {
   }
 }
 
+// randomizacja tablicy
+Array.prototype.shuffle = function () {
+  return this.sort(() => Math.random() - 0.5)
+}
+
+// deterministyczne uuid, brak duplikatów
 async function generatePostUUID() {
   try {
     const response = await fetch('http://localhost:3000/posts')
     const posts = await response.json()
     const length = posts.length
-    const data = new TextEncoder().encode(length)
-    const uuid = await crypto.subtle.digest("SHA-256", data)
+    const bytes = new TextEncoder().encode(length)
+    const uuid = await crypto.subtle.digest("SHA-256", bytes)
     const tablica = Array.from(new Uint8Array(uuid))
     const hex = tablica.map(b => b.toString(16)).join('')
     return hex
