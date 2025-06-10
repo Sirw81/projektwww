@@ -197,8 +197,8 @@ body.light-mode #theme-toggle:hover {
 }
 
 #showPassword, #showConfirmPassword {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     position: relative;
     bottom: 55px;
     left: 130px;
